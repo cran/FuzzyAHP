@@ -5,18 +5,23 @@
 \alias{weakConsistency}
 \alias{weakConsistency,FuzzyPairwiseComparisonMatrix-method}
 \alias{weakConsistency,PairwiseComparisonMatrix-method}
-\title{Function to assess weak consistency of Comparison Matrix}
+\title{Function to assess Weak Consistency of Comparison Matrix}
 \usage{
-weakConsistency(PairwiseComparisonMatrix)
+weakConsistency(PairwiseComparisonMatrix, print.report = TRUE)
 
 
-  \S4method{weakConsistency}{FuzzyPairwiseComparisonMatrix}(PairwiseComparisonMatrix)
+  \S4method{weakConsistency}{FuzzyPairwiseComparisonMatrix}(PairwiseComparisonMatrix,
+  print.report = TRUE)
 
-\S4method{weakConsistency}{PairwiseComparisonMatrix}(PairwiseComparisonMatrix)
+\S4method{weakConsistency}{PairwiseComparisonMatrix}(PairwiseComparisonMatrix,
+  print.report = TRUE)
 }
 \arguments{
 \item{PairwiseComparisonMatrix}{A \linkS4class{FuzzyPairwiseComparisonMatrix} or
 \linkS4class{PairwiseComparisonMatrix}.}
+
+\item{print.report}{Optional boolean parameter stating if short report should be printed along with determination
+of Weak Consistency. Default value is \code{TRUE}.}
 }
 \value{
 Boolean value indicating if Comparison Matrix passed the weak consistency test and a warning message
@@ -24,7 +29,7 @@ listing the problematic triplets if the matrix is not consisten.
 }
 \description{
 Check if for \eqn{a_{ij}>1,a_{jk}>1}{a[i,j]>1,a[j,k]>1} applies that
-\eqn{a_{ik}>\max(a_{ij},a_{jk})}{a[i,k]>max(a[i,j],a[j,k])} for all \eqn{i,j,k = 1,2,\dots,n}, where
+\deqn{a_{ik}>=\max(a_{ij},a_{jk})}{a[i,k]>=max(a[i,j],a[j,k])} for all \eqn{i,j,k = 1,2,\dots,n}, where
 \eqn{n} is size of \eqn{a}.
 }
 

@@ -3,23 +3,37 @@
 \docType{methods}
 \name{consistencyRatio}
 \alias{consistencyRatio}
+\alias{consistencyRatio,FuzzyPairwiseComparisonMatrix-method}
 \alias{consistencyRatio,PairwiseComparisonMatrix-method}
 \title{Function to determine Consistency Ratio}
 \usage{
-consistencyRatio(comparisonMatrix)
+consistencyRatio(comparisonMatrix, print.report = TRUE)
 
-\S4method{consistencyRatio}{PairwiseComparisonMatrix}(comparisonMatrix)
+\S4method{consistencyRatio}{PairwiseComparisonMatrix}(comparisonMatrix,
+  print.report = TRUE)
+
+\S4method{consistencyRatio}{FuzzyPairwiseComparisonMatrix}(comparisonMatrix,
+  print.report = TRUE)
 }
 \arguments{
 \item{comparisonMatrix}{A \code{\linkS4class{PairwiseComparisonMatrix}}}
+
+\item{print.report}{Optional boolean parameter stating if short report should be printed along with determination
+of Consistency Ratio. Default value is \code{TRUE}.}
 }
 \value{
 A numeric value of Consistency Ratio, for \code{\linkS4class{PairwiseComparisonMatrix}} with more than 10
-rows a value of Consistency index, that needs to be further evaluated.
+an error is raised.
 }
 \description{
 This methods calculates Consistency Ratio for \code{\linkS4class{PairwiseComparisonMatrix}}.
 The consistency ratio can only be provided for \code{\linkS4class{PairwiseComparisonMatrix}} with
 less than 10 rows. For bigger matrices the value is not known.
+}
+\details{
+Generally pairwise comparison matrixes are considered to be consistent if the value of Consistency Ration
+is smaller than 0.1. For matrices comparing more then 10 elements then Consistency Ratio is unsuitable, because the
+values of random index, that is necessary to obtain Consistency Ratio, are only known for matrixes with size smaller
+than \eqn{10\times10}.
 }
 

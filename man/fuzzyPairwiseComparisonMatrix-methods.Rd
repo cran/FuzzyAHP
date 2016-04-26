@@ -5,6 +5,7 @@
 \alias{fuzzyPairwiseComparisonMatrix}
 \alias{fuzzyPairwiseComparisonMatrix,PairwiseComparisonMatrix,fuzzyScale-method}
 \alias{fuzzyPairwiseComparisonMatrix,PairwiseComparisonMatrix-method}
+\alias{fuzzyPairwiseComparisonMatrix,matrix-method}
 \title{Function that creates Fuzzy Pairwise Comparions Matrix}
 \usage{
 fuzzyPairwiseComparisonMatrix(pairwiseComparisonMatrix, fuzzyScale)
@@ -13,9 +14,13 @@ fuzzyPairwiseComparisonMatrix(pairwiseComparisonMatrix, fuzzyScale)
   \S4method{fuzzyPairwiseComparisonMatrix}{PairwiseComparisonMatrix}(pairwiseComparisonMatrix,
   fuzzyScale = as.double(c(1/2, 1, 2, 1, 2, 3, 2, 3, 4, 3, 4, 5, 4, 5, 6, 5,
   6, 7, 6, 7, 8, 7, 8, 9, 8, 9, 9)))
+
+\S4method{fuzzyPairwiseComparisonMatrix}{matrix}(pairwiseComparisonMatrix,
+  fuzzyScale = as.double(c(1/2, 1, 2, 1, 2, 3, 2, 3, 4, 3, 4, 5, 4, 5, 6, 5,
+  6, 7, 6, 7, 8, 7, 8, 9, 8, 9, 9)))
 }
 \arguments{
-\item{pairwiseComparisonMatrix}{\linkS4class{PairwiseComparisonMatrix}.}
+\item{pairwiseComparisonMatrix}{\linkS4class{PairwiseComparisonMatrix} or \code{matrix}.}
 
 \item{fuzzyScale}{A numeric vector that definies fuzzy scale. Default scale is described in details.}
 }
@@ -32,5 +37,11 @@ numbers used as fuzzy intensity of importance (only the values equal or higher t
 are calculated automatically). The values need to be ordered by fuzzy values. Default value of this
 parameter is \code{as.double(c(1/2,1,2,1,2,3,2,3,4,3,4,5,4,5,6,5,6,7,6,7,8,7,8,9,8,9,9))}. Another
 possibility is eg. \code{as.double(c(1/3,1,3,1,3,5,3,5,7,5,7,9,7,9,9))}
+
+If param \code{pairwiseComparisonMatrix} is \code{matrix} then it needs to be of \code{character} type.
+Each element in the matrix must be specified as triplet \code{"x;y;z"}, where \code{x<=y<=z}.
+From this matrix a pairwise comparison is constructed from \code{y} values and \code{x} and \code{z}
+function as lower and upper limits of \code{y} respectively. In this case the optional parameter
+\code{fuzzyScale} is not taken into account at all.
 }
 

@@ -12,7 +12,7 @@
 <meta name="author" content="Jan Caha, Aneta Drážná" />
 
 
-<title>Examples of FuzzyAHP package application (ver. 0.6.1)</title>
+<title>Examples of FuzzyAHP package application (ver. 0.7.1)</title>
 
 
 
@@ -67,9 +67,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="fluid-row" id="header">
 
 
-<h1 class="title">Examples of FuzzyAHP package application (ver. 0.6.1)</h1>
+<h1 class="title">Examples of FuzzyAHP package application (ver. 0.7.1)</h1>
 <h4 class="author"><em>Jan Caha, Aneta Drážná</em></h4>
-<h4 class="date"><em>2016-04-05 11:41:12</em></h4>
+<h4 class="date"><em>2016-04-26 18:24:10</em></h4>
 
 </div>
 
@@ -98,7 +98,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1>AHP (non fuzzy)</h1>
 <div id="pairwise-comparison-matrix-creation" class="section level2">
 <h2>Pairwise Comparison Matrix Creation</h2>
-<p>The pairwise comparison matrix can either be loaded from a file or inputed manually. Either way the values in the matrix need to represented as character. The matrix needs to be squared reciprocal matrix with maximal value smaller or equall to 9.</p>
+<p>The pairwise comparison matrix can either be loaded from a file or inputed manually. Since the version 0.6.9 the values can be represented as either character or double. However, the character representation seem as slightly better idea because it allows printing more comprehensible output. The matrix needs to be squared reciprocal matrix with maximal value smaller or equall to 9.</p>
 <p>The matrix in text file can have the following form.</p>
 <pre><code>;&quot;crit1&quot;;&quot;crit2&quot;;&quot;crit3&quot;
 &quot;crit1&quot;;&quot;1&quot;;&quot;9&quot;;&quot;5&quot; 
@@ -110,9 +110,14 @@ comparisonMatrix =<span class="st"> </span><span class="kw">read.csv</span>(matr
                    <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">row.names =</span> <span class="dv">1</span>, <span class="dt">strip.white =</span> <span class="ot">TRUE</span>)
 comparisonMatrix =<span class="st"> </span><span class="kw">as.matrix</span>(comparisonMatrix)</code></pre></div>
 <p>If the matrix is inputed manually then it can be done by following commands:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">comparisonMatrixValues =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">5</span>,
+                           <span class="dv">1</span>/<span class="dv">9</span>,<span class="dv">1</span>,<span class="dv">1</span>/<span class="dv">3</span>,
+                           <span class="dv">1</span>/<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">1</span>)
+comparisonMatrix =<span class="st"> </span><span class="kw">matrix</span>(comparisonMatrixValues, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>In the case that the values are represented as double. If the values are represented as character then the code looks like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">comparisonMatrixValues =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;1&quot;</span>,<span class="st">&quot;9&quot;</span>,<span class="st">&quot;5&quot;</span>,
-                       <span class="st">&quot;1/9&quot;</span>,<span class="st">&quot;1&quot;</span>,<span class="st">&quot;1/3&quot;</span>,
-                       <span class="st">&quot;1/5&quot;</span>,<span class="st">&quot;3&quot;</span>,<span class="st">&quot;1&quot;</span>)
+                           <span class="st">&quot;1/9&quot;</span>,<span class="st">&quot;1&quot;</span>,<span class="st">&quot;1/3&quot;</span>,
+                           <span class="st">&quot;1/5&quot;</span>,<span class="st">&quot;3&quot;</span>,<span class="st">&quot;1&quot;</span>)
 comparisonMatrix =<span class="st"> </span><span class="kw">matrix</span>(comparisonMatrixValues, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>Either way the comparsion matrix is created using command pairwiseComparisonMatrix. After printing we can see that the S4 object contains two representation of the matrix, One as characters and other one as numeric.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">comparisonMatrix =<span class="st"> </span><span class="kw">pairwiseComparisonMatrix</span>(comparisonMatrix)
@@ -123,22 +128,21 @@ comparisonMatrix =<span class="st"> </span><span class="kw">matrix</span>(compar
 ## [3,] &quot;1/5&quot; &quot;3&quot;  &quot;1&quot;</code></pre>
 <div id="testing-consistency-of-pairwise-comparison-matrix" class="section level3">
 <h3>Testing consistency of Pairwise Comparison Matrix</h3>
-<p>There are three consistency checks impelemnted in FuzzyAHP package. The first is consistency ratio as defined by <span class="citation">Saaty (1980)</span>. The functions output short message summarizing the calculation and provides value of the consistency ratio.</p>
+<p>There are three consistency checks impelemnted in FuzzyAHP package. The first is consistency ratio as defined by <span class="citation">T. Saaty (1980)</span>. The functions output short message summarizing the calculation and provides value of the consistency ratio. The consistency ration can be calculated for matrices with size up to <span class="math inline">\(15 \times 15\)</span> according to <span class="citation">T. L. Saaty and Tran (2007)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CR =<span class="st"> </span><span class="kw">consistencyRatio</span>(comparisonMatrix)</code></pre></div>
 <pre><code>## Consistency ratio is: 0.0279459296138796. The pairwise comparison matrix is consistent for calculations.</code></pre>
-<p>Another check is a weak consistency that checks if for <span class="math inline">\(a_{ij}&gt;1\)</span> and <span class="math inline">\(a_{jk}&gt;1\)</span> applies that <span class="math inline">\(a_{ik}&gt;\max(a_{ij},a_{jk})\)</span> for every <span class="math inline">\(i,j,k = 1,2,\dots,n\)</span>, where <span class="math inline">\(n\)</span> is a size of matrix <span class="math inline">\(a\)</span>. The functions returns TRUE if the matrix passes the test or FALSE if it fails and print short message (warning message summarazing the issues, if they exist, is printed as well).</p>
+<p>Another check is a weak consistency that checks if for <span class="math inline">\(a_{ij}&gt;1\)</span> and <span class="math inline">\(a_{jk}&gt;1\)</span> applies that <span class="math inline">\(a_{ik}&gt;=\max(a_{ij},a_{jk})\)</span> for every <span class="math inline">\(i,j,k = 1,2,\dots,n\)</span>, where <span class="math inline">\(n\)</span> is a size of matrix <span class="math inline">\(a\)</span> <span class="citation">(Stoklasa, Jandová, and Talašová 2013)</span>. The functions returns TRUE if the matrix passes the test or FALSE if it fails and print short message (warning message summarazing the issues, if they exist, is printed as well).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weakConsistency =<span class="st"> </span><span class="kw">weakConsistency</span>(comparisonMatrix)</code></pre></div>
 <pre><code>## The comparison matrix is weakly consistent.</code></pre>
-<p>Strict consistency is much stronger prerequsion that is generally true only for absolutely consistent evaluator. It might be problematic to fulfill this codition for more complex matricies. However, it seems reasonable to try this verification just to study the outcome. The strict consistency checks that <span class="math inline">\(a_{ik} = a_{ij} \times a_{jk}\)</span> for every <span class="math inline">\(i,j,k = 1,2,\dots,n\)</span>, where <span class="math inline">\(n\)</span> is a size of matrix <span class="math inline">\(a\)</span>. Again TRUE or FALSE value is returned along with short message.</p>
+<p>Strict consistency is much stronger prerequsion that is generally true only for absolutely consistent evaluator. It might be problematic to fulfill this codition for more complex matricies. However, it seems reasonable to try this verification just to study the outcome. The strict consistency checks that <span class="math inline">\(a_{ik} = a_{ij} \times a_{jk}\)</span> for every <span class="math inline">\(i,j,k = 1,2,\dots,n\)</span>, where <span class="math inline">\(n\)</span> is a size of matrix <span class="math inline">\(a\)</span> <span class="citation">(Basile and D’Apuzzo 1997)</span>. Again TRUE or FALSE value is returned along with short message.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">strictConsistency =<span class="st"> </span><span class="kw">strictConsistency</span>(comparisonMatrix)</code></pre></div>
-<pre><code>## Warning: Comparison matrix isn't strictly consistent. These indeces violate the condition: 
+<pre><code>## Comparison matrix isn't strictly consistent. These indeces violate the condition: 
 ## [1,3] != ([1,2]*[2,3]) -- 5 != 3
 ## [1,2] != ([1,3]*[3,2]) -- 9 != 15
 ## [2,3] != ([2,1]*[1,3]) -- 0.333333333333333 != 0.555555555555556
 ## [2,1] != ([2,3]*[3,1]) -- 0.111111111111111 != 0.0666666666666667
 ## [3,2] != ([3,1]*[1,2]) -- 3 != 1.8
 ## [3,1] != ([3,2]*[2,1]) -- 0.2 != 0.333333333333333</code></pre>
-<p>Both consistencies are described by <span class="citation">Basile and D’Apuzzo (1997)</span>.</p>
 </div>
 </div>
 <div id="calculations-with-pairwise-comparison-matrix" class="section level2">
@@ -149,12 +153,15 @@ comparisonMatrix =<span class="st"> </span><span class="kw">matrix</span>(compar
 <pre><code>##     w1     w2     w3 
 ## 0.7514 0.0704 0.1782</code></pre>
 <p>To calculate the AHP some data are needed. As mentioned in the description the FuzzyAHP package is prepared for data that uses scale (categorical) ranking of alternatives (the higher the value the better). In order to calculate AHP we need matrix of data that has the same number of colums as there are weights.</p>
+<p>Data that have even one element equal to NA are to taken into account at all, the result is automatically determined as NA.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">values =<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>,
 <span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">9</span>,
 <span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">4</span>,
 <span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">7</span>,
 <span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">5</span>,
-<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>)
+<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>,
+<span class="ot">NA</span>,<span class="dv">9</span>,<span class="dv">9</span>,
+<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="ot">NA</span>)
 values =<span class="st"> </span><span class="kw">matrix</span>(values, <span class="dt">nrow =</span> <span class="kw">length</span>(values)/<span class="kw">length</span>(weights@weights), <span class="dt">ncol =</span> <span class="kw">length</span>(weights@weights), <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>Now we can calculate the result according to the weights. The values with higher resulting value are better solutions of the AHP problem.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result =<span class="st"> </span><span class="kw">calculateAHP</span>(weights, values)
@@ -165,22 +172,34 @@ values =<span class="st"> </span><span class="kw">matrix</span>(values, <span cl
 ## [3,] 7.146454
 ## [4,] 3.642293
 ## [5,] 5.892240
-## [6,] 3.892240</code></pre>
+## [6,] 3.892240
+## [7,]       NA
+## [8,]       NA</code></pre>
 <p>If we wan to rank solutions from the best to the worst, we can do that.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rank =<span class="st"> </span>(<span class="kw">nrow</span>(result)+<span class="dv">1</span>) -<span class="st"> </span><span class="kw">rank</span>(result, <span class="dt">na.last =</span> <span class="ot">FALSE</span>, <span class="dt">ties.method=</span> <span class="st">&quot;max&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rank =<span class="st"> </span><span class="kw">compareResults</span>(result)
 <span class="kw">print</span>(rank)</code></pre></div>
-<pre><code>## [1] 3 6 1 5 2 3</code></pre>
+<pre><code>##      [,1]
+## [1,]    5
+## [2,]    8
+## [3,]    3
+## [4,]    7
+## [5,]    4
+## [6,]    5
+## [7,]   NA
+## [8,]   NA</code></pre>
 <p>It is also possible to put the results together to produce better outcome.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result =<span class="st"> </span><span class="kw">cbind</span>(values, result, rank)
 <span class="kw">colnames</span>(result) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;crit1&quot;</span>, <span class="st">&quot;crit2&quot;</span>, <span class="st">&quot;crit3&quot;</span>, <span class="st">&quot;result_value&quot;</span>, <span class="st">&quot;ranking&quot;</span>)
 <span class="kw">print</span>(result)</code></pre></div>
 <pre><code>##      crit1 crit2 crit3 result_value ranking
-## [1,]     4     5     3     3.892240       3
-## [2,]     1     3     9     2.566257       6
-## [3,]     8     6     4     7.146454       1
-## [4,]     3     2     7     3.642293       5
-## [5,]     6     7     5     5.892240       2
-## [6,]     4     5     3     3.892240       3</code></pre>
+## [1,]     4     5     3     3.892240       5
+## [2,]     1     3     9     2.566257       8
+## [3,]     8     6     4     7.146454       3
+## [4,]     3     2     7     3.642293       7
+## [5,]     6     7     5     5.892240       4
+## [6,]     4     5     3     3.892240       5
+## [7,]    NA     9     9           NA      NA
+## [8,]    NA    NA    NA           NA      NA</code></pre>
 <p>Obviously, since AHP is a hierarchical process the result from one calculation can be merged with outcomes from another calculation (ie. using cbind command) and used as input to another AHP calculation.</p>
 </div>
 </div>
@@ -221,10 +240,12 @@ comparisonMatrix =<span class="st"> </span><span class="kw">pairwiseComparisonMa
 ## [3,] 7.135438
 ## [4,] 3.654089
 ## [5,] 5.899425
-## [6,] 3.897250</code></pre>
+## [6,] 3.897250
+## [7,]       NA
+## [8,]       NA</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rank =<span class="st"> </span>(<span class="kw">nrow</span>(values)+<span class="dv">1</span>) -<span class="st"> </span><span class="kw">rank</span>(defuzzified, <span class="dt">na.last =</span> <span class="ot">FALSE</span>, <span class="dt">ties.method=</span> <span class="st">&quot;max&quot;</span>)
 <span class="kw">print</span>(rank)</code></pre></div>
-<pre><code>## [1] 3 6 1 5 2 3</code></pre>
+<pre><code>## [1] 3 6 1 5 2 3 8 7</code></pre>
 <p>Ranking of fuzzy numbers can be done using various approaches. One of them is Chen’s method described by <span class="citation">Tesfamariam and Sadiq (2006)</span>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ranked =<span class="st"> </span><span class="kw">compareFuzzyNumbers</span>(result, <span class="st">&quot;Chen&quot;</span>)
 <span class="kw">print</span>(ranked)</code></pre></div>
@@ -234,7 +255,9 @@ comparisonMatrix =<span class="st"> </span><span class="kw">pairwiseComparisonMa
 ## [3,] 0.8682673
 ## [4,] 0.2849724
 ## [5,] 0.6625851
-## [6,] 0.3241398</code></pre>
+## [6,] 0.3241398
+## [7,]        NA
+## [8,]        NA</code></pre>
 <p>Another possibility is the utilization of possibility theory as described by <span class="citation">Dubois and Prade (1983)</span>. These indices work very well if there is a relatively bigger set of very good solutions. Unlike defuzzification or other methods these indices can rank them very well. However, if there is only one dominant best solution the result might not be very descriptive.</p>
 <p>For large datasets the calculation might take a while. Because of that a graphical progressbar can be printed if it is turn on by progressBar parameter.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ranked =<span class="st"> </span><span class="kw">compareFuzzyNumbers</span>(result, <span class="st">&quot;possibilityTheory&quot;</span>)
@@ -246,7 +269,9 @@ comparisonMatrix =<span class="st"> </span><span class="kw">pairwiseComparisonMa
 ## [3,]          1         1
 ## [4,]          0         0
 ## [5,]          0         0
-## [6,]          0         0</code></pre>
+## [6,]          0         0
+## [7,]         NA        NA
+## [8,]         NA        NA</code></pre>
 </div>
 <div id="references" class="section level2 unnumbered">
 <h2>References</h2>
@@ -268,6 +293,12 @@ comparisonMatrix =<span class="st"> </span><span class="kw">pairwiseComparisonMa
 </div>
 <div id="ref-Saaty1980">
 <p>Saaty, T.L. 1980. <em>The Analytical Hierarchy Process</em>. New York: McGraw Hill.</p>
+</div>
+<div id="ref-Saaty2007">
+<p>Saaty, Thomas L., and Liem T. Tran. 2007. “On the invalidity of fuzzifying numerical judgments in the Analytic Hierarchy Process.” <em>Mathematical and Computer Modelling</em> 46 (7-8): 962–75. doi:<a href="https://doi.org/10.1016/j.mcm.2007.03.022">10.1016/j.mcm.2007.03.022</a>.</p>
+</div>
+<div id="ref-Stoklasa2013">
+<p>Stoklasa, Jan, Věra Jandová, and Jana Talašová. 2013. “Weak consistency in Saaty’s AHP - evaluating creative work outcomes of Czech Art Colleges.” <em>Neural Network World</em> 23 (1): 61–77. doi:<a href="https://doi.org/10.14311/NNW.2013.23.005">10.14311/NNW.2013.23.005</a>.</p>
 </div>
 <div id="ref-Tesfamariam2006">
 <p>Tesfamariam, Solomon, and Rehan Sadiq. 2006. “Risk-based environmental decision-making using fuzzy analytic hierarchy process (F-AHP).” <em>Stochastic Environmental Research and Risk Assessment</em> 21 (1): 35–50. doi:<a href="https://doi.org/10.1007/s00477-006-0042-9">10.1007/s00477-006-0042-9</a>.</p>

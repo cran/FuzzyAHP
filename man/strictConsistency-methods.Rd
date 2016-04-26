@@ -7,24 +7,29 @@
 \alias{strictConsistency,PairwiseComparisonMatrix-method}
 \title{Function to assess strict consistency of Comparison Matrix}
 \usage{
-strictConsistency(PairwiseComparisonMatrix)
+strictConsistency(PairwiseComparisonMatrix, print.report = TRUE)
 
 
-  \S4method{strictConsistency}{FuzzyPairwiseComparisonMatrix}(PairwiseComparisonMatrix)
+  \S4method{strictConsistency}{FuzzyPairwiseComparisonMatrix}(PairwiseComparisonMatrix,
+  print.report = TRUE)
 
 
-  \S4method{strictConsistency}{PairwiseComparisonMatrix}(PairwiseComparisonMatrix)
+  \S4method{strictConsistency}{PairwiseComparisonMatrix}(PairwiseComparisonMatrix,
+  print.report = TRUE)
 }
 \arguments{
 \item{PairwiseComparisonMatrix}{A \linkS4class{FuzzyPairwiseComparisonMatrix} or
 \linkS4class{PairwiseComparisonMatrix}.}
+
+\item{print.report}{Optional boolean parameter stating if short report should be printed along with determination
+of Weak Consistency. Default value is \code{TRUE}.}
 }
 \value{
 Boolean value indicating if Comparison Matrix passed the weak consistency test and a warning message
 listing the problematic triplets if the matrix is not consisten.
 }
 \description{
-Check if \eqn{a_{ik} = a_{ij} \times a_{jk}}{a[i,k]==a[i,j]*a[j,k]} applies
+Check if \deqn{a_{ik} = a_{ij} \times a_{jk}}{a[i,k]==a[i,j]*a[j,k]} applies
 for all \eqn{i,j,k = 1,2,\dots,n}, where \eqn{n} is size of \eqn{a}.
 }
 

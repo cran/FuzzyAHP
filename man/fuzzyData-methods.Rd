@@ -6,12 +6,16 @@
 \alias{fuzzyData,matrix-method}
 \title{Function that creates FuzzyData}
 \usage{
-fuzzyData(data)
+fuzzyData(data, single.value = TRUE)
 
-\S4method{fuzzyData}{matrix}(data)
+\S4method{fuzzyData}{matrix}(data, single.value = TRUE)
 }
 \arguments{
 \item{data}{A \code{matrix} with 3 colums.}
+
+\item{single.value}{An optional boolean parameter (default value TRUE) specifying if the data to be
+turn into fuzzy data is single vector of fuzzy numbers (then it needs to have 3 colums) or if the
+whole matrix needs to be turn into fuzzy values.}
 }
 \value{
 An object of class \code{\linkS4class{FuzzyData}}

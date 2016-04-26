@@ -15,5 +15,7 @@ An S4 class to represent a fuzzy pairwise comparison matrix.
 \item{\code{fnModal}}{A matrix of modal values of fuzzy preferences.}
 
 \item{\code{fnMax}}{A matrix of maximal values of fuzzy preferences.}
+
+\item{\code{variableNames}}{Names of variables in the pariwise comparison matrix obtained either as colnames or rownames.}
 }}
 

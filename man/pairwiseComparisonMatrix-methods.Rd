@@ -19,10 +19,16 @@ An object of class \code{\linkS4class{PairwiseComparisonMatrix}}
 \description{
 This methods construct object \code{\linkS4class{PairwiseComparisonMatrix}} based on provided \code{matrix}.
 The matrix needs to be square and reciprocal with the intensity of importance
-(comparisons) represented as characters (e.g. "1", "9", "1/9") otherwise the function fails.
+(comparisons).
+Since the version 0.6.9 the comparsions can be represented as either characters (e.g. "1", "9", "1/9")
+or numeric (e.g. 1, 9, 1/9) .
 }
 \examples{
 comparisonMatrixValues = c("1","9","5","1/9","1","1/3","1/5","3","1")
+comparisonMatrix = matrix(comparisonMatrixValues, nrow = 3, ncol = 3, byrow = TRUE)
+matrix = pairwiseComparisonMatrix(comparisonMatrix)
+
+comparisonMatrixValues = c(1,9,5,1/9,1,1/3,1/5,3,1)
 comparisonMatrix = matrix(comparisonMatrixValues, nrow = 3, ncol = 3, byrow = TRUE)
 matrix = pairwiseComparisonMatrix(comparisonMatrix)
 

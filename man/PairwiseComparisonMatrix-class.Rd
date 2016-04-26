@@ -13,5 +13,7 @@ An S4 class to represent a pairwise comparison matrix.
 \item{\code{valuesChar}}{A pairwise comparison matrix based on Saaty's method as characters.}
 
 \item{\code{values}}{A pairwise comparison matrix based on Saaty's method as numeric.}
+
+\item{\code{variableNames}}{Names of variables in the pariwise comparison matrix obtained either as colnames or rownames.}
 }}
 

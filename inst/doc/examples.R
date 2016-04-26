@@ -9,9 +9,15 @@ library(FuzzyAHP)
 #  comparisonMatrix = as.matrix(comparisonMatrix)
 
 ## ---------------------------------------------------------------------------------------------------------------------
+comparisonMatrixValues = c(1,9,5,
+                           1/9,1,1/3,
+                           1/5,3,1)
+comparisonMatrix = matrix(comparisonMatrixValues, nrow = 3, ncol = 3, byrow = TRUE)
+
+## ---------------------------------------------------------------------------------------------------------------------
 comparisonMatrixValues = c("1","9","5",
-                       "1/9","1","1/3",
-                       "1/5","3","1")
+                           "1/9","1","1/3",
+                           "1/5","3","1")
 comparisonMatrix = matrix(comparisonMatrixValues, nrow = 3, ncol = 3, byrow = TRUE)
 
 ## ---------------------------------------------------------------------------------------------------------------------
@@ -37,7 +43,9 @@ values = c(4,5,3,
 8,6,4,
 3,2,7,
 6,7,5,
-4,5,3)
+4,5,3,
+NA,9,9,
+NA,NA,NA)
 values = matrix(values, nrow = length(values)/length(weights@weights), ncol = length(weights@weights), byrow = TRUE)
 
 ## ---------------------------------------------------------------------------------------------------------------------
@@ -45,7 +53,7 @@ result = calculateAHP(weights, values)
 print(result)
 
 ## ---------------------------------------------------------------------------------------------------------------------
-rank = (nrow(result)+1) - rank(result, na.last = FALSE, ties.method= "max")
+rank = compareResults(result)
 print(rank)
 
 ## ---------------------------------------------------------------------------------------------------------------------
