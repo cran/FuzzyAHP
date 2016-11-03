@@ -22,7 +22,6 @@ comparisonMatrix = matrix(comparisonMatrixValues, nrow = 3, ncol = 3, byrow = TR
 
 ## ---------------------------------------------------------------------------------------------------------------------
 comparisonMatrix = pairwiseComparisonMatrix(comparisonMatrix)
-print(comparisonMatrix)
 
 ## ---------------------------------------------------------------------------------------------------------------------
 CR = consistencyRatio(comparisonMatrix)
@@ -95,4 +94,11 @@ ranked = compareFuzzyNumbers(result, "possibilityTheory")
 
 ## ---------------------------------------------------------------------------------------------------------------------
 print(ranked)
+
+## ---- eval=FALSE------------------------------------------------------------------------------------------------------
+#  calculateWeights_old_methods(fuzzyComparisonMatrix, type)
+
+## ---- eval=FALSE------------------------------------------------------------------------------------------------------
+#  calculate_weighting_vector(fuzzyWeights).
+#  
 

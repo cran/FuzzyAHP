@@ -20,6 +20,9 @@ calculateWeights(comparisonMatrix)
 This functions calculates \code{\linkS4class{Weights}} or \code{\linkS4class{FuzzyWeights}}
 based on input pairwise comparison matrix.
 }
+\references{
+KREJČÍ, Jana, PAVLAČKA, Ondřej and TALAŠOVÁ, Jana, 2016, A fuzzy extension of Analytic Hierarchy Process based on the constrained fuzzy arithmetic. Fuzzy Optimization and Decision Making. 2016. DOI 10.1007/s10700-016-9241-0.
+}
 \seealso{
 \link{PairwiseComparisonMatrix-class}
 }
