@@ -1,6 +1,6 @@
 ---
 title: "Examples of FuzzyAHP package application (ver. `r packageDescription('FuzzyAHP')$Version`)"
-author: "Jan Caha, Aneta Drážná"
+author: "Jan Caha"
 date: '`r Sys.time()`'
 output:
   rmarkdown::html_vignette:
@@ -25,7 +25,7 @@ The package consists several S4 objects that are used in set of functions. For e
 
 ## Pairwise Comparison Matrix Creation
 
-The pairwise comparison matrix can either be loaded from a file or inputed manually. Since the version 0.6.9 the values can be represented as either character or double. However, the character representation seem as slightly better idea because it allows printing more comprehensible output. The matrix needs to be squared reciprocal matrix with maximal value smaller or equall to 9.
+The pairwise comparison matrix can either be loaded from a file or inputted manually. Since the version 0.6.9 the values can be represented as either character or double. However, the character representation seem as slightly better idea because it allows printing more comprehensible output. The matrix needs to be squared reciprocal matrix with maximal value smaller or equal to 9.
 
 The matrix in text file can have the following form.
 ```
@@ -34,6 +34,16 @@ The matrix in text file can have the following form.
 "crit2";"1/9";"1";"1/3"
 "crit3";"1/5";"3";"1"
 ```
+
+Since version 0.9.0 it is also possible to use only upper or lower triangle of the pairwise comparison matrix (including the main diagonal). So the definition above can also look like this: 
+```
+;"crit1";"crit2";"crit3"
+"crit1";"1";"9";"5" 
+"crit2";"";"1";"1/3"
+"crit3";"";"";"1"
+```
+In case of numerical matrix the values representing undefined comparisons is either ```0``` or ```NA```.
+
 The loading is then done as:
 ```{r, eval = FALSE}
 matrixFile =  "comparison_matrix.csv"
@@ -41,44 +51,55 @@ comparisonMatrix = read.csv(matrixFile, sep = ";",
                    stringsAsFactors = FALSE, header = TRUE, row.names = 1, strip.white = TRUE)
 comparisonMatrix = as.matrix(comparisonMatrix)
 ```
-If the matrix is inputed manually then it can be done by following commands:
+If the matrix is inputted manually then it can be done by following commands:
 ```{r}
 comparisonMatrixValues = c(1,9,5,
-                           1/9,1,1/3,
-                           1/5,3,1)
+                           NA,1,1/3,
+                           NA,NA,1)
 comparisonMatrix = matrix(comparisonMatrixValues, nrow = 3, ncol = 3, byrow = TRUE)
 ```
 In the case that the values are represented as double. If the values are represented as character then the code looks like this:
 ```{r}
 comparisonMatrixValues = c("1","9","5",
-                           "1/9","1","1/3",
-                           "1/5","3","1")
+                           "","1","1/3",
+                           "","","1")
 comparisonMatrix = matrix(comparisonMatrixValues, nrow = 3, ncol = 3, byrow = TRUE)
 ```
-Either way the comparsion matrix is created using command pairwiseComparisonMatrix. After printing we can see that the S4 object contains two representation of the matrix, One as characters and other one as numeric.
+Either way the comparison matrix is created using command pairwiseComparisonMatrix. After printing we can see that the S4 object contains two representation of the matrix, one as characters and other one as numeric as well as slot for variables names, which in this case is filled automatically.
 
 ```{r}
 comparisonMatrix = pairwiseComparisonMatrix(comparisonMatrix)
+show(comparisonMatrix)
 ```
 
+The textual representation of the pairwise comparison matrix can be obtained as:
+```{r}
+textMatrix = textRepresentation(comparisonMatrix, whole = FALSE)
+print(textMatrix)
+```
+The ```whole``` parameter specifies if the full matrix is printed or only the upper triangle including main diagonal. Setting the parameter to ```TRUE``` is equal to using:
+```{r}
+print(comparisonMatrix)
+```
 
+ 
 ### Testing consistency of Pairwise Comparison Matrix
 
-There are three consistency checks impelemnted in FuzzyAHP package. The first is consistency ratio as defined by @Saaty1980. The functions output short message summarizing the calculation and provides value of the consistency ratio. The consistency ration can be calculated for matrices with size up to $15 \times 15$ according to @Saaty2007.
+There are three consistency checks implemented in FuzzyAHP package. The first is consistency ratio as defined by @Saaty1980. The functions output short message summarizing the calculation and provides value of the consistency ratio. The consistency ration can be calculated for matrices with size up to $15 \times 15$ according to @Saaty2007.
 
 ```{r}
-CR = consistencyRatio(comparisonMatrix)
+consistencyRatio(comparisonMatrix)
+CR = consistencyRatio(comparisonMatrix, print.report = FALSE)
+print(CR)
 ```
 
-
-
-Another check is a weak consistency that checks if for $a_{ij}>1$ and $a_{jk}>1$ applies that $a_{ik}>=\max(a_{ij},a_{jk})$ for every $i,j,k = 1,2,\dots,n$, where $n$ is a size of matrix $a$ [@Stoklasa2013]. The functions returns TRUE if the matrix passes the test or FALSE if it fails and print short message (warning message summarazing the issues, if they exist, is printed as well).
+Another check is a weak consistency that checks if for $a_{ij}>1$ and $a_{jk}>1$ applies that $a_{ik}>=\max(a_{ij},a_{jk})$ for every $i,j,k = 1,2,\dots,n$, where $n$ is a size of matrix $a$ [@Stoklasa2013]. The functions returns TRUE if the matrix passes the test or FALSE if it fails and print short message (warning message summarizing the issues, if they exist, is printed as well).
 
 ```{r}
 weakConsistency = weakConsistency(comparisonMatrix)
 ```
 
-Strict consistency is much stronger prerequsion that is generally true only for absolutely consistent evaluator. It might be problematic to fulfill this codition for more complex matricies. However, it seems reasonable to try this verification just to study the outcome. The strict consistency checks that $a_{ik} = a_{ij} \times a_{jk}$ for every $i,j,k = 1,2,\dots,n$, where $n$ is a size of matrix $a$ [@Basile1997]. Again TRUE or FALSE value is returned along with short message.
+Strict consistency is much stronger prerequisite that is generally true only for absolutely consistent evaluator. It might be problematic to fulfill this condition for more complex matrices. However, it seems reasonable to try this verification just to study the outcome. The strict consistency checks that $a_{ik} = a_{ij} \times a_{jk}$ for every $i,j,k = 1,2,\dots,n$, where $n$ is a size of matrix $a$ [@Basile1997]. Again TRUE or FALSE value is returned along with short message.
 
 ```{r}
 strictConsistency = strictConsistency(comparisonMatrix)
@@ -86,16 +107,16 @@ strictConsistency = strictConsistency(comparisonMatrix)
 
 ## Calculations with Pairwise Comparison Matrix
 
-If the matrix is consistent for calculation accoring to users conditions subsequent calculations can be made. First step is obtaining weights of criteria. The weights are calculated as geometric mean of each row of the pairwise comparison matrix.
+If the matrix is consistent for calculation according to users conditions subsequent calculations can be made. First step is obtaining weights of criteria. The weights are calculated as geometric mean of each row of the pairwise comparison matrix.
 
 ```{r}
 weights = calculateWeights(comparisonMatrix)
 print(weights)
 ```
 
-To calculate the AHP some data are needed. As mentioned in the description the FuzzyAHP package is prepared for data that uses scale (categorical) ranking of alternatives (the higher the value the better). In order to calculate AHP we need matrix of data that has the same number of colums as there are weights.
+To calculate the AHP some data are needed. As mentioned in the description the FuzzyAHP package is prepared for data that uses scale (categorical) ranking of alternatives (the higher the value the better), although classic AHP can be calculated as well. In order to calculate AHP we need matrix of data that has the same number of columns as there are weights.
 
-Data that have even one element equal to NA are to taken into account at all, the result is automatically determined as NA. 
+Data that have even one element equal to ```NA``` are to taken into account at all, the result is automatically determined as ```NA```. 
 
 ```{r}
 values = c(4,5,3,
@@ -145,7 +166,7 @@ comparisonMatrix = matrix(comparisonMatrixValues, nrow = 3, ncol = 3, byrow = TR
 comparisonMatrix = pairwiseComparisonMatrix(comparisonMatrix)
 ```
 
-Due to the fact, that checking of fuzzy comparsion matrix consistency is relatively complicated, it is simpler to check the non fuzzy matrix and assume that if non fuzzy matrix is consistend than so is the fuzzy matrix. The checks are described above.
+Due to the fact, that checking of fuzzy comparison matrix consistency is relatively complicated, it is simpler to check the non fuzzy matrix and assume that if non fuzzy matrix is consisted than so is the fuzzy matrix. The checks are described above.
 
 The comparison matrix is fuzzified with respect to the fuzzy scale. Default fuzzy scale ranging from 1 to 9 with width of fuzzy number equal to 2 is provided. However, user can specify his own fuzzy scale. For the details please see documentation.
 
@@ -156,13 +177,13 @@ print(fuzzyComparisonMatrix)
 
 ## Calculations with Fuzzy Pairwise Comparison Matrix
 
-With the fuzzy comparion matrix the result of AHP process can be calculated in the same way as with classic comparison matrix. The weights of fuzzy comparison matrix are calculated by approach desribed by @Krejci2016.
+With the fuzzy comparison matrix the result of AHP process can be calculated in the same way as with classic comparison matrix. The weights of fuzzy comparison matrix are calculated by approach described by @Krejci2016.
 
 ```{r}
 result = calculateAHP(fuzzyComparisonMatrix, values)
 ```
 
-The resulting values have issue of representing uncertaint value. Such values are hard to present to user directly. Even though it is possible. The user can extract singe fuzzy numbers from the set.
+The resulting values have issue of representing uncertain value. Such values are hard to present to user directly. Even though it is possible. The user can extract singe fuzzy numbers from the set.
 
 ```{r}
 fuzzyNumer = getFuzzyNumber(result, as.integer(2))
@@ -174,7 +195,7 @@ It might be reasonable for user to either defuzzify the values into single outpu
 ```{r}
 defuzzified = defuzziffy(result, "Yager")
 print(defuzzified)
-rank = (nrow(values)+1) - rank(defuzzified, na.last = FALSE, ties.method= "max")
+rank = (nrow(values)+1) - sum(is.na(defuzzified)) - rank(defuzzified, na.last = "keep", ties.method= "max")
 print(rank)
 ```
 
@@ -187,7 +208,7 @@ print(ranked)
 
 Another possibility is the utilization of possibility theory as described by @Dubois1983. These indices work very well if there is a relatively bigger set of very good solutions. Unlike defuzzification or other methods these indices can rank them very well. However, if there is only one dominant best solution the result might not be very descriptive.
 
-For large datasets the calculation might take a while. Because of that a graphical progressbar can be printed if it is turn on by progressBar parameter.
+For large datasets the calculation might take a while. Because of that a graphical progress-bar can be printed if it is turn on by progress-bar parameter.
 
 ```{r, results = "hide"}
 ranked = compareFuzzyNumbers(result, "possibilityTheory")
@@ -209,14 +230,48 @@ and should only be used for comparison to the new approach proposed by @Krejci20
 All three mentioned methods are often used to calculate so called weighting (or priority) vector of crisp weights based on comparisons of fuzzy weights (@Chang1996). However, @Wang2008b showed that the priority vector can assign irrational weights at specific situations and thus is not suitable for practical calculations. For the purpose of comparison the method for determination of fuzzy vector is implemented as:
 ```{r, eval=FALSE}
 calculate_weighting_vector(fuzzyWeights).
+```
 
+# Construction of pairwise comparison matrix from several evaluations
+
+Firstly, we prepare three pairwise comparison matrices that represent evaluations of the same problem by three experts.
+```{r}
+pmatrix1 = matrix(c(1,3,5,1/3,1,2,1/5,1/2,1), nrow = 3, byrow = TRUE)
+pmatrix1 = pairwiseComparisonMatrix(pmatrix1)
+pmatrix2 = matrix(c(1,2,7,1/2,1,4,1/7,1/4,1), nrow = 3, byrow = TRUE)
+pmatrix2 = pairwiseComparisonMatrix(pmatrix2)
+pmatrix3 = matrix(c(1,1,4,1/1,1,2,1/4,1/2,1), nrow = 3, byrow = TRUE)
+pmatrix3 = pairwiseComparisonMatrix(pmatrix3)
+```
+
+Now we can create pairwise comparsion matrix that unifies the evaluations into single matrix using geometric (or arithmetic) mean. Here the fraction representation will not look so good anymoore so the decimal representation maybe better.
+```{r}
+unified_matrix = buildPairwiseComparisonMatrix(list(pmatrix1, pmatrix2, pmatrix3), agg = "geometric")
+print(unified_matrix)
+print(unified_matrix@values)
+```
+
+It is also possible to create fuzzy pairwise comparison matrix using mininal, geometric mean and maximal value from the list of pairwise comparison matrices.
+```{r}
+unified_fuzzy_matrix = buildFuzzyPairwiseComparisonMatrix(list(pmatrix1, pmatrix2, pmatrix3))
+print(unified_fuzzy_matrix)
+```
+
+If the matrices are fuzzified first, it is still possible to use them to construct fuzzy pairwise comparison matrix. The minimal, modal and maximal values are calculated as geometric means of the relevant values.
+```{r}
+fpmatrix1 = fuzzyPairwiseComparisonMatrix(pmatrix1, getFuzzyScale("full"))
+fpmatrix2 = fuzzyPairwiseComparisonMatrix(pmatrix2, getFuzzyScale("full"))
+fpmatrix3 = fuzzyPairwiseComparisonMatrix(pmatrix3, getFuzzyScale("full"))
+
+unified_fuzzy_matrix = buildFuzzyPairwiseComparisonMatrix(list(fpmatrix1, fpmatrix2, fpmatrix3))
+print(unified_fuzzy_matrix)
 ```
 
 # Author's contribution
 
 Jan Caha - creator, programmer
 
-Aneta Drážná - tester
+Aneta Drážná - tester (up to version 0.6.5)
 
 
 

@@ -19,7 +19,7 @@ getFuzzyNumber(object, index)
 \item{index}{An object of class \code{integer} that represents one or more indices to extract the data from}
 }
 \value{
-A \code{matrix} where rows
+A \code{matrix} where rows are fuzzy numbers and columns are important values.
 }
 \description{
 This methods helps with extracting fuzzy numbers from \code{\linkS4class{FuzzyData}} and

@@ -10,21 +10,31 @@ library(FuzzyAHP)
 
 ## ---------------------------------------------------------------------------------------------------------------------
 comparisonMatrixValues = c(1,9,5,
-                           1/9,1,1/3,
-                           1/5,3,1)
+                           NA,1,1/3,
+                           NA,NA,1)
 comparisonMatrix = matrix(comparisonMatrixValues, nrow = 3, ncol = 3, byrow = TRUE)
 
 ## ---------------------------------------------------------------------------------------------------------------------
 comparisonMatrixValues = c("1","9","5",
-                           "1/9","1","1/3",
-                           "1/5","3","1")
+                           "","1","1/3",
+                           "","","1")
 comparisonMatrix = matrix(comparisonMatrixValues, nrow = 3, ncol = 3, byrow = TRUE)
 
 ## ---------------------------------------------------------------------------------------------------------------------
 comparisonMatrix = pairwiseComparisonMatrix(comparisonMatrix)
+show(comparisonMatrix)
 
 ## ---------------------------------------------------------------------------------------------------------------------
-CR = consistencyRatio(comparisonMatrix)
+textMatrix = textRepresentation(comparisonMatrix, whole = FALSE)
+print(textMatrix)
+
+## ---------------------------------------------------------------------------------------------------------------------
+print(comparisonMatrix)
+
+## ---------------------------------------------------------------------------------------------------------------------
+consistencyRatio(comparisonMatrix)
+CR = consistencyRatio(comparisonMatrix, print.report = FALSE)
+print(CR)
 
 ## ---------------------------------------------------------------------------------------------------------------------
 weakConsistency = weakConsistency(comparisonMatrix)
@@ -81,7 +91,7 @@ print(fuzzyNumer)
 ## ---------------------------------------------------------------------------------------------------------------------
 defuzzified = defuzziffy(result, "Yager")
 print(defuzzified)
-rank = (nrow(values)+1) - rank(defuzzified, na.last = FALSE, ties.method= "max")
+rank = (nrow(values)+1) - sum(is.na(defuzzified)) - rank(defuzzified, na.last = "keep", ties.method= "max")
 print(rank)
 
 ## ---------------------------------------------------------------------------------------------------------------------
@@ -100,5 +110,29 @@ print(ranked)
 
 ## ---- eval=FALSE------------------------------------------------------------------------------------------------------
 #  calculate_weighting_vector(fuzzyWeights).
-#  
+
+## ---------------------------------------------------------------------------------------------------------------------
+pmatrix1 = matrix(c(1,3,5,1/3,1,2,1/5,1/2,1), nrow = 3, byrow = TRUE)
+pmatrix1 = pairwiseComparisonMatrix(pmatrix1)
+pmatrix2 = matrix(c(1,2,7,1/2,1,4,1/7,1/4,1), nrow = 3, byrow = TRUE)
+pmatrix2 = pairwiseComparisonMatrix(pmatrix2)
+pmatrix3 = matrix(c(1,1,4,1/1,1,2,1/4,1/2,1), nrow = 3, byrow = TRUE)
+pmatrix3 = pairwiseComparisonMatrix(pmatrix3)
+
+## ---------------------------------------------------------------------------------------------------------------------
+unified_matrix = buildPairwiseComparisonMatrix(list(pmatrix1, pmatrix2, pmatrix3), agg = "geometric")
+print(unified_matrix)
+print(unified_matrix@values)
+
+## ---------------------------------------------------------------------------------------------------------------------
+unified_fuzzy_matrix = buildFuzzyPairwiseComparisonMatrix(list(pmatrix1, pmatrix2, pmatrix3))
+print(unified_fuzzy_matrix)
+
+## ---------------------------------------------------------------------------------------------------------------------
+fpmatrix1 = fuzzyPairwiseComparisonMatrix(pmatrix1, getFuzzyScale("full"))
+fpmatrix2 = fuzzyPairwiseComparisonMatrix(pmatrix2, getFuzzyScale("full"))
+fpmatrix3 = fuzzyPairwiseComparisonMatrix(pmatrix3, getFuzzyScale("full"))
+
+unified_fuzzy_matrix = buildFuzzyPairwiseComparisonMatrix(list(fpmatrix1, fpmatrix2, fpmatrix3))
+print(unified_fuzzy_matrix)
 

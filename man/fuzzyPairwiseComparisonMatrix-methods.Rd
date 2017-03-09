@@ -3,26 +3,33 @@
 \docType{methods}
 \name{fuzzyPairwiseComparisonMatrix}
 \alias{fuzzyPairwiseComparisonMatrix}
+\alias{fuzzyPairwiseComparisonMatrix,PairwiseComparisonMatrix}
 \alias{fuzzyPairwiseComparisonMatrix,PairwiseComparisonMatrix,fuzzyScale-method}
 \alias{fuzzyPairwiseComparisonMatrix,PairwiseComparisonMatrix-method}
 \alias{fuzzyPairwiseComparisonMatrix,matrix-method}
 \title{Function that creates Fuzzy Pairwise Comparions Matrix}
 \usage{
-fuzzyPairwiseComparisonMatrix(pairwiseComparisonMatrix, fuzzyScale)
+fuzzyPairwiseComparisonMatrix(pairwiseComparisonMatrix, fuzzyScale,
+comparsionNotInScale, width)
 
 
   \S4method{fuzzyPairwiseComparisonMatrix}{PairwiseComparisonMatrix}(pairwiseComparisonMatrix,
-  fuzzyScale = as.double(c(1/2, 1, 2, 1, 2, 3, 2, 3, 4, 3, 4, 5, 4, 5, 6, 5,
-  6, 7, 6, 7, 8, 7, 8, 9, 8, 9, 9)))
+  fuzzyScale = getFuzzyScale(type = "full"), comparsionNotInScale = FALSE,
+  width = 1)
 
-\S4method{fuzzyPairwiseComparisonMatrix}{matrix}(pairwiseComparisonMatrix,
-  fuzzyScale = as.double(c(1/2, 1, 2, 1, 2, 3, 2, 3, 4, 3, 4, 5, 4, 5, 6, 5,
-  6, 7, 6, 7, 8, 7, 8, 9, 8, 9, 9)))
+\S4method{fuzzyPairwiseComparisonMatrix}{matrix}(pairwiseComparisonMatrix)
 }
 \arguments{
 \item{pairwiseComparisonMatrix}{\linkS4class{PairwiseComparisonMatrix} or \code{matrix}.}
 
 \item{fuzzyScale}{A numeric vector that definies fuzzy scale. Default scale is described in details.}
+
+\item{comparsionNotInScale}{A boolean variable. If \code{TRUE} the intensities not found in
+\code{fuzzyScale} are calculated with use of \code{width} parameter. Default value \code{FALSE}.}
+
+\item{width}{A numeric parameter, specifying the width of calculated fuzzy intensity. If
+\code{comparsionNotInScale} is \code{FALSE} then the parameter is not considered.
+Default value \code{1}.}
 }
 \value{
 Object of class \linkS4class{FuzzyPairwiseComparisonMatrix}
