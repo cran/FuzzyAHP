@@ -4,61 +4,271 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="author" content="Jan Caha" />
+<meta name="author" content="Jan Caha, Aneta Drážná" />
 
 
-<title>Examples of FuzzyAHP package application (ver. 0.9.0)</title>
+<title>Examples of FuzzyAHP package application (ver. 0.9.1)</title>
 
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
 
-<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
 
 </head>
 
@@ -67,9 +277,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 
-<h1 class="title toc-ignore">Examples of FuzzyAHP package application (ver. 0.9.0)</h1>
-<h4 class="author"><em>Jan Caha</em></h4>
-<h4 class="date"><em>2017-03-09 12:57:26</em></h4>
+<h1 class="title toc-ignore">Examples of FuzzyAHP package application (ver. 0.9.1)</h1>
+<h4 class="author"><em>Jan Caha, Aneta Drážná</em></h4>
+<h4 class="date"><em>2018-05-21 12:46:18</em></h4>
 
 
 <div id="TOC">
@@ -86,7 +296,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="#calculations-with-fuzzy-pairwise-comparison-matrix">Calculations with Fuzzy Pairwise Comparison Matrix</a></li>
 <li><a href="#other-methods-for-determination-of-fuzzy-weights">Other methods for determination of fuzzy weights</a></li>
 </ul></li>
-<li><a href="#construction-of-pairwise-comparison-matrix-from-several-evaluations">Construction of pairwise comparison matrix from several evaluations</a></li>
 <li><a href="#authors-contribution">Author’s contribution</a></li>
 <li><a href="#references">References</a></li>
 </ul>
@@ -113,23 +322,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 &quot;crit3&quot;;&quot;&quot;;&quot;&quot;;&quot;1&quot;</code></pre>
 <p>In case of numerical matrix the values representing undefined comparisons is either <code>0</code> or <code>NA</code>.</p>
 <p>The loading is then done as:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matrixFile =<span class="st">  &quot;comparison_matrix.csv&quot;</span>
-comparisonMatrix =<span class="st"> </span><span class="kw">read.csv</span>(matrixFile, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>,
-                   <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">row.names =</span> <span class="dv">1</span>, <span class="dt">strip.white =</span> <span class="ot">TRUE</span>)
-comparisonMatrix =<span class="st"> </span><span class="kw">as.matrix</span>(comparisonMatrix)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">matrixFile =<span class="st">  &quot;comparison_matrix.csv&quot;</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">comparisonMatrix =<span class="st"> </span><span class="kw">read.csv</span>(matrixFile, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>,</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">                   <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">row.names =</span> <span class="dv">1</span>, <span class="dt">strip.white =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">comparisonMatrix =<span class="st"> </span><span class="kw">as.matrix</span>(comparisonMatrix)</a></code></pre></div>
 <p>If the matrix is inputted manually then it can be done by following commands:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">comparisonMatrixValues =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">5</span>,
-                           <span class="ot">NA</span>,<span class="dv">1</span>,<span class="dv">1</span>/<span class="dv">3</span>,
-                           <span class="ot">NA</span>,<span class="ot">NA</span>,<span class="dv">1</span>)
-comparisonMatrix =<span class="st"> </span><span class="kw">matrix</span>(comparisonMatrixValues, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">comparisonMatrixValues =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">                           <span class="ot">NA</span>,<span class="dv">1</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">                           <span class="ot">NA</span>,<span class="ot">NA</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">comparisonMatrix =<span class="st"> </span><span class="kw">matrix</span>(comparisonMatrixValues, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>In the case that the values are represented as double. If the values are represented as character then the code looks like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">comparisonMatrixValues =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;1&quot;</span>,<span class="st">&quot;9&quot;</span>,<span class="st">&quot;5&quot;</span>,
-                           <span class="st">&quot;&quot;</span>,<span class="st">&quot;1&quot;</span>,<span class="st">&quot;1/3&quot;</span>,
-                           <span class="st">&quot;&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="st">&quot;1&quot;</span>)
-comparisonMatrix =<span class="st"> </span><span class="kw">matrix</span>(comparisonMatrixValues, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">comparisonMatrixValues =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;1&quot;</span>,<span class="st">&quot;9&quot;</span>,<span class="st">&quot;5&quot;</span>,</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">                           <span class="st">&quot;&quot;</span>,<span class="st">&quot;1&quot;</span>,<span class="st">&quot;1/3&quot;</span>,</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">                           <span class="st">&quot;&quot;</span>,<span class="st">&quot;&quot;</span>,<span class="st">&quot;1&quot;</span>)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">comparisonMatrix =<span class="st"> </span><span class="kw">matrix</span>(comparisonMatrixValues, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Either way the comparison matrix is created using command pairwiseComparisonMatrix. After printing we can see that the S4 object contains two representation of the matrix, one as characters and other one as numeric as well as slot for variables names, which in this case is filled automatically.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">comparisonMatrix =<span class="st"> </span><span class="kw">pairwiseComparisonMatrix</span>(comparisonMatrix)
-<span class="kw">show</span>(comparisonMatrix)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">comparisonMatrix =<span class="st"> </span><span class="kw">pairwiseComparisonMatrix</span>(comparisonMatrix)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">show</span>(comparisonMatrix)</a></code></pre></div>
 <pre><code>## An object of class &quot;PairwiseComparisonMatrix&quot;
 ## Slot &quot;valuesChar&quot;:
 ##      [,1]  [,2] [,3] 
@@ -146,32 +355,32 @@ comparisonMatrix =<span class="st"> </span><span class="kw">matrix</span>(compar
 ## Slot &quot;variableNames&quot;:
 ## [1] &quot;C_1&quot; &quot;C_2&quot; &quot;C_3&quot;</code></pre>
 <p>The textual representation of the pairwise comparison matrix can be obtained as:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">textMatrix =<span class="st"> </span><span class="kw">textRepresentation</span>(comparisonMatrix, <span class="dt">whole =</span> <span class="ot">FALSE</span>)
-<span class="kw">print</span>(textMatrix)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">textMatrix =<span class="st"> </span><span class="kw">textRepresentation</span>(comparisonMatrix, <span class="dt">whole =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">print</span>(textMatrix)</a></code></pre></div>
 <pre><code>##     C_1 C_2 C_3
 ## C_1   1   9   5
 ## C_2       1 1/3
 ## C_3           1</code></pre>
 <p>The <code>whole</code> parameter specifies if the full matrix is printed or only the upper triangle including main diagonal. Setting the parameter to <code>TRUE</code> is equal to using:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(comparisonMatrix)</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">print</span>(comparisonMatrix)</a></code></pre></div>
 <pre><code>##     C_1 C_2 C_3
 ## C_1   1   9   5
 ## C_2 1/9   1 1/3
 ## C_3 1/5   3   1</code></pre>
 <div id="testing-consistency-of-pairwise-comparison-matrix" class="section level3">
 <h3>Testing consistency of Pairwise Comparison Matrix</h3>
-<p>There are three consistency checks implemented in FuzzyAHP package. The first is consistency ratio as defined by <span class="citation">T. Saaty (1980)</span>. The functions output short message summarizing the calculation and provides value of the consistency ratio. The consistency ration can be calculated for matrices with size up to <span class="math inline">\(15 \times 15\)</span> according to <span class="citation">T. L. Saaty and Tran (2007)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">consistencyRatio</span>(comparisonMatrix)</code></pre></div>
+<p>There are three consistency checks implemented in FuzzyAHP package. The first is consistency ratio as defined by <span class="citation">Saaty (<a href="#ref-Saaty1980">1980</a>)</span>. The functions output short message summarizing the calculation and provides value of the consistency ratio. The consistency ration can be calculated for matrices with size up to <span class="math inline">\(15 \times 15\)</span> according to <span class="citation">Saaty and Tran (<a href="#ref-Saaty2007">2007</a>)</span>.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">consistencyRatio</span>(comparisonMatrix)</a></code></pre></div>
 <pre><code>## Consistency ratio is: 0.0279459296138796. The pairwise comparison matrix is consistent for calculations.</code></pre>
 <pre><code>## [1] 0.02794593</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CR =<span class="st"> </span><span class="kw">consistencyRatio</span>(comparisonMatrix, <span class="dt">print.report =</span> <span class="ot">FALSE</span>)
-<span class="kw">print</span>(CR)</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">CR =<span class="st"> </span><span class="kw">consistencyRatio</span>(comparisonMatrix, <span class="dt">print.report =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw">print</span>(CR)</a></code></pre></div>
 <pre><code>## [1] 0.02794593</code></pre>
-<p>Another check is a weak consistency that checks if for <span class="math inline">\(a_{ij}&gt;1\)</span> and <span class="math inline">\(a_{jk}&gt;1\)</span> applies that <span class="math inline">\(a_{ik}&gt;=\max(a_{ij},a_{jk})\)</span> for every <span class="math inline">\(i,j,k = 1,2,\dots,n\)</span>, where <span class="math inline">\(n\)</span> is a size of matrix <span class="math inline">\(a\)</span> <span class="citation">(Stoklasa, Jandová, and Talašová 2013)</span>. The functions returns TRUE if the matrix passes the test or FALSE if it fails and print short message (warning message summarizing the issues, if they exist, is printed as well).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weakConsistency =<span class="st"> </span><span class="kw">weakConsistency</span>(comparisonMatrix)</code></pre></div>
+<p>Another check is a weak consistency that checks if for <span class="math inline">\(a_{ij}&gt;1\)</span> and <span class="math inline">\(a_{jk}&gt;1\)</span> applies that <span class="math inline">\(a_{ik}&gt;=\max(a_{ij},a_{jk})\)</span> for every <span class="math inline">\(i,j,k = 1,2,\dots,n\)</span>, where <span class="math inline">\(n\)</span> is a size of matrix <span class="math inline">\(a\)</span> <span class="citation">(Stoklasa, Jandová, and Talašová <a href="#ref-Stoklasa2013">2013</a>)</span>. The functions returns TRUE if the matrix passes the test or FALSE if it fails and print short message (warning message summarizing the issues, if they exist, is printed as well).</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">weakConsistency =<span class="st"> </span><span class="kw">weakConsistency</span>(comparisonMatrix)</a></code></pre></div>
 <pre><code>## The comparison matrix is weakly consistent.</code></pre>
-<p>Strict consistency is much stronger prerequisite that is generally true only for absolutely consistent evaluator. It might be problematic to fulfill this condition for more complex matrices. However, it seems reasonable to try this verification just to study the outcome. The strict consistency checks that <span class="math inline">\(a_{ik} = a_{ij} \times a_{jk}\)</span> for every <span class="math inline">\(i,j,k = 1,2,\dots,n\)</span>, where <span class="math inline">\(n\)</span> is a size of matrix <span class="math inline">\(a\)</span> <span class="citation">(Basile and D’Apuzzo 1997)</span>. Again TRUE or FALSE value is returned along with short message.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">strictConsistency =<span class="st"> </span><span class="kw">strictConsistency</span>(comparisonMatrix)</code></pre></div>
+<p>Strict consistency is much stronger prerequisite that is generally true only for absolutely consistent evaluator. It might be problematic to fulfill this condition for more complex matrices. However, it seems reasonable to try this verification just to study the outcome. The strict consistency checks that <span class="math inline">\(a_{ik} = a_{ij} \times a_{jk}\)</span> for every <span class="math inline">\(i,j,k = 1,2,\dots,n\)</span>, where <span class="math inline">\(n\)</span> is a size of matrix <span class="math inline">\(a\)</span> <span class="citation">(Basile and D’Apuzzo <a href="#ref-Basile1997">1997</a>)</span>. Again TRUE or FALSE value is returned along with short message.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">strictConsistency =<span class="st"> </span><span class="kw">strictConsistency</span>(comparisonMatrix)</a></code></pre></div>
 <pre><code>## Comparison matrix isn't strictly consistent. These indeces violate the condition: 
 ## [1,3] != ([1,2]*[2,3]) -- 5 != 3
 ## [1,2] != ([1,3]*[3,2]) -- 9 != 15
@@ -184,24 +393,24 @@ comparisonMatrix =<span class="st"> </span><span class="kw">matrix</span>(compar
 <div id="calculations-with-pairwise-comparison-matrix" class="section level2">
 <h2>Calculations with Pairwise Comparison Matrix</h2>
 <p>If the matrix is consistent for calculation according to users conditions subsequent calculations can be made. First step is obtaining weights of criteria. The weights are calculated as geometric mean of each row of the pairwise comparison matrix.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weights =<span class="st"> </span><span class="kw">calculateWeights</span>(comparisonMatrix)
-<span class="kw">print</span>(weights)</code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">weights =<span class="st"> </span><span class="kw">calculateWeights</span>(comparisonMatrix)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">print</span>(weights)</a></code></pre></div>
 <pre><code>##  w_C_1  w_C_2  w_C_3 
 ## 0.7514 0.0704 0.1782</code></pre>
 <p>To calculate the AHP some data are needed. As mentioned in the description the FuzzyAHP package is prepared for data that uses scale (categorical) ranking of alternatives (the higher the value the better), although classic AHP can be calculated as well. In order to calculate AHP we need matrix of data that has the same number of columns as there are weights.</p>
 <p>Data that have even one element equal to <code>NA</code> are to taken into account at all, the result is automatically determined as <code>NA</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">values =<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>,
-<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">9</span>,
-<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">4</span>,
-<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">7</span>,
-<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">5</span>,
-<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>,
-<span class="ot">NA</span>,<span class="dv">9</span>,<span class="dv">9</span>,
-<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="ot">NA</span>)
-values =<span class="st"> </span><span class="kw">matrix</span>(values, <span class="dt">nrow =</span> <span class="kw">length</span>(values)/<span class="kw">length</span>(weights@weights), <span class="dt">ncol =</span> <span class="kw">length</span>(weights@weights), <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">values =<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">9</span>,</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">7</span>,</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5"><span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb23-6" data-line-number="6"><span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb23-7" data-line-number="7"><span class="ot">NA</span>,<span class="dv">9</span>,<span class="dv">9</span>,</a>
+<a class="sourceLine" id="cb23-8" data-line-number="8"><span class="ot">NA</span>,<span class="ot">NA</span>,<span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb23-9" data-line-number="9">values =<span class="st"> </span><span class="kw">matrix</span>(values, <span class="dt">nrow =</span> <span class="kw">length</span>(values)<span class="op">/</span><span class="kw">length</span>(weights<span class="op">@</span>weights), <span class="dt">ncol =</span> <span class="kw">length</span>(weights<span class="op">@</span>weights), <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Now we can calculate the result according to the weights. The values with higher resulting value are better solutions of the AHP problem.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result =<span class="st"> </span><span class="kw">calculateAHP</span>(weights, values)
-<span class="kw">print</span>(result)</code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">result =<span class="st"> </span><span class="kw">calculateAHP</span>(weights, values)</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="kw">print</span>(result)</a></code></pre></div>
 <pre><code>##        result
 ## [1,] 3.892240
 ## [2,] 2.566257
@@ -212,8 +421,8 @@ values =<span class="st"> </span><span class="kw">matrix</span>(values, <span cl
 ## [7,]       NA
 ## [8,]       NA</code></pre>
 <p>If we wan to rank solutions from the best to the worst, we can do that.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rank =<span class="st"> </span><span class="kw">compareResults</span>(result)
-<span class="kw">print</span>(rank)</code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">rank =<span class="st"> </span><span class="kw">compareResults</span>(result)</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">print</span>(rank)</a></code></pre></div>
 <pre><code>##      [,1]
 ## [1,]    3
 ## [2,]    6
@@ -224,9 +433,9 @@ values =<span class="st"> </span><span class="kw">matrix</span>(values, <span cl
 ## [7,]   NA
 ## [8,]   NA</code></pre>
 <p>It is also possible to put the results together to produce better outcome.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result =<span class="st"> </span><span class="kw">cbind</span>(values, result, rank)
-<span class="kw">colnames</span>(result) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;crit1&quot;</span>, <span class="st">&quot;crit2&quot;</span>, <span class="st">&quot;crit3&quot;</span>, <span class="st">&quot;result_value&quot;</span>, <span class="st">&quot;ranking&quot;</span>)
-<span class="kw">print</span>(result)</code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">result =<span class="st"> </span><span class="kw">cbind</span>(values, result, rank)</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="kw">colnames</span>(result) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;crit1&quot;</span>, <span class="st">&quot;crit2&quot;</span>, <span class="st">&quot;crit3&quot;</span>, <span class="st">&quot;result_value&quot;</span>, <span class="st">&quot;ranking&quot;</span>)</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="kw">print</span>(result)</a></code></pre></div>
 <pre><code>##      crit1 crit2 crit3 result_value ranking
 ## [1,]     4     5     3     3.892240       3
 ## [2,]     1     3     9     2.566257       6
@@ -243,16 +452,16 @@ values =<span class="st"> </span><span class="kw">matrix</span>(values, <span cl
 <h1>Fuzzy AHP</h1>
 <div id="fuzzy-pairwise-comparison-matrix-creation" class="section level2">
 <h2>Fuzzy Pairwise Comparison Matrix Creation</h2>
-<p>The fuzzy pairwise comparison matrix is an extended version of pairwise comparison matrix constructed with respect to fuzzy scale. Details about fuzzy AHP are provided in several articles by <span class="citation">Laarhoven and Pedrycz (1983)</span> and <span class="citation">Chang (1996)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">comparisonMatrixValues =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;1&quot;</span>,<span class="st">&quot;9&quot;</span>,<span class="st">&quot;5&quot;</span>,
-                       <span class="st">&quot;1/9&quot;</span>,<span class="st">&quot;1&quot;</span>,<span class="st">&quot;1/3&quot;</span>,
-                       <span class="st">&quot;1/5&quot;</span>,<span class="st">&quot;3&quot;</span>,<span class="st">&quot;1&quot;</span>)
-comparisonMatrix =<span class="st"> </span><span class="kw">matrix</span>(comparisonMatrixValues, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
-comparisonMatrix =<span class="st"> </span><span class="kw">pairwiseComparisonMatrix</span>(comparisonMatrix)</code></pre></div>
+<p>The fuzzy pairwise comparison matrix is an extended version of pairwise comparison matrix constructed with respect to fuzzy scale. Details about fuzzy AHP are provided in several articles by <span class="citation">Laarhoven and Pedrycz (<a href="#ref-Laarhoven1983">1983</a>)</span> and <span class="citation">Chang (<a href="#ref-Chang1996">1996</a>)</span>.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">comparisonMatrixValues =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;1&quot;</span>,<span class="st">&quot;9&quot;</span>,<span class="st">&quot;5&quot;</span>,</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">                       <span class="st">&quot;1/9&quot;</span>,<span class="st">&quot;1&quot;</span>,<span class="st">&quot;1/3&quot;</span>,</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3">                       <span class="st">&quot;1/5&quot;</span>,<span class="st">&quot;3&quot;</span>,<span class="st">&quot;1&quot;</span>)</a>
+<a class="sourceLine" id="cb30-4" data-line-number="4">comparisonMatrix =<span class="st"> </span><span class="kw">matrix</span>(comparisonMatrixValues, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb30-5" data-line-number="5">comparisonMatrix =<span class="st"> </span><span class="kw">pairwiseComparisonMatrix</span>(comparisonMatrix)</a></code></pre></div>
 <p>Due to the fact, that checking of fuzzy comparison matrix consistency is relatively complicated, it is simpler to check the non fuzzy matrix and assume that if non fuzzy matrix is consisted than so is the fuzzy matrix. The checks are described above.</p>
 <p>The comparison matrix is fuzzified with respect to the fuzzy scale. Default fuzzy scale ranging from 1 to 9 with width of fuzzy number equal to 2 is provided. However, user can specify his own fuzzy scale. For the details please see documentation.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fuzzyComparisonMatrix =<span class="st"> </span><span class="kw">fuzzyPairwiseComparisonMatrix</span>(comparisonMatrix)
-<span class="kw">print</span>(fuzzyComparisonMatrix)</code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">fuzzyComparisonMatrix =<span class="st"> </span><span class="kw">fuzzyPairwiseComparisonMatrix</span>(comparisonMatrix)</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">print</span>(fuzzyComparisonMatrix)</a></code></pre></div>
 <pre><code>##               C_1     C_2           C_3
 ## C_1       (1;1;1) (8;9;9)       (4;5;6)
 ## C_2 (1/9;1/9;1/8) (1;1;1) (1/4;1/3;1/2)
@@ -260,16 +469,16 @@ comparisonMatrix =<span class="st"> </span><span class="kw">pairwiseComparisonMa
 </div>
 <div id="calculations-with-fuzzy-pairwise-comparison-matrix" class="section level2">
 <h2>Calculations with Fuzzy Pairwise Comparison Matrix</h2>
-<p>With the fuzzy comparison matrix the result of AHP process can be calculated in the same way as with classic comparison matrix. The weights of fuzzy comparison matrix are calculated by approach described by <span class="citation">Krejčí, Pavlačka, and Talašová (2016)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result =<span class="st"> </span><span class="kw">calculateAHP</span>(fuzzyComparisonMatrix, values)</code></pre></div>
+<p>With the fuzzy comparison matrix the result of AHP process can be calculated in the same way as with classic comparison matrix. The weights of fuzzy comparison matrix are calculated by approach described by <span class="citation">Krejčí, Pavlačka, and Talašová (<a href="#ref-Krejci2016">2016</a>)</span>.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">result =<span class="st"> </span><span class="kw">calculateAHP</span>(fuzzyComparisonMatrix, values)</a></code></pre></div>
 <p>The resulting values have issue of representing uncertain value. Such values are hard to present to user directly. Even though it is possible. The user can extract singe fuzzy numbers from the set.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fuzzyNumer =<span class="st"> </span><span class="kw">getFuzzyNumber</span>(result, <span class="kw">as.integer</span>(<span class="dv">2</span>))
-<span class="kw">print</span>(fuzzyNumer)</code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">fuzzyNumer =<span class="st"> </span><span class="kw">getFuzzyNumber</span>(result, <span class="kw">as.integer</span>(<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="kw">print</span>(fuzzyNumer)</a></code></pre></div>
 <pre><code>##      minimal    modal  maximal
 ## [1,] 2.17584 2.566257 3.055858</code></pre>
-<p>It might be reasonable for user to either defuzzify the values into single output or rank then using fuzzy ranking methods. Defuzzification can be done using several approaches, here Yager’s index is used as described by <span class="citation">Tesfamariam and Sadiq (2006)</span>. The results of defuzzification can be ranked as classic results of AHP.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">defuzzified =<span class="st"> </span><span class="kw">defuzziffy</span>(result, <span class="st">&quot;Yager&quot;</span>)
-<span class="kw">print</span>(defuzzified)</code></pre></div>
+<p>It might be reasonable for user to either defuzzify the values into single output or rank then using fuzzy ranking methods. Defuzzification can be done using several approaches, here Yager’s index is used as described by <span class="citation">Tesfamariam and Sadiq (<a href="#ref-Tesfamariam2006">2006</a>)</span>. The results of defuzzification can be ranked as classic results of AHP.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">defuzzified =<span class="st"> </span><span class="kw">defuzziffy</span>(result, <span class="st">&quot;Yager&quot;</span>)</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="kw">print</span>(defuzzified)</a></code></pre></div>
 <pre><code>##          [,1]
 ## [1,] 3.897250
 ## [2,] 2.599318
@@ -279,12 +488,12 @@ comparisonMatrix =<span class="st"> </span><span class="kw">pairwiseComparisonMa
 ## [6,] 3.897250
 ## [7,]       NA
 ## [8,]       NA</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rank =<span class="st"> </span>(<span class="kw">nrow</span>(values)+<span class="dv">1</span>) -<span class="st"> </span><span class="kw">sum</span>(<span class="kw">is.na</span>(defuzzified)) -<span class="st"> </span><span class="kw">rank</span>(defuzzified, <span class="dt">na.last =</span> <span class="st">&quot;keep&quot;</span>, <span class="dt">ties.method=</span> <span class="st">&quot;max&quot;</span>)
-<span class="kw">print</span>(rank)</code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">rank =<span class="st"> </span>(<span class="kw">nrow</span>(values)<span class="op">+</span><span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">is.na</span>(defuzzified)) <span class="op">-</span><span class="st"> </span><span class="kw">rank</span>(defuzzified, <span class="dt">na.last =</span> <span class="st">&quot;keep&quot;</span>, <span class="dt">ties.method=</span> <span class="st">&quot;max&quot;</span>)</a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">print</span>(rank)</a></code></pre></div>
 <pre><code>## [1]  3  6  1  5  2  3 NA NA</code></pre>
-<p>Ranking of fuzzy numbers can be done using various approaches. One of them is Chen’s method described by <span class="citation">Tesfamariam and Sadiq (2006)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ranked =<span class="st"> </span><span class="kw">compareFuzzyNumbers</span>(result, <span class="st">&quot;Chen&quot;</span>)
-<span class="kw">print</span>(ranked)</code></pre></div>
+<p>Ranking of fuzzy numbers can be done using various approaches. One of them is Chen’s method described by <span class="citation">Tesfamariam and Sadiq (<a href="#ref-Tesfamariam2006">2006</a>)</span>.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">ranked =<span class="st"> </span><span class="kw">compareFuzzyNumbers</span>(result, <span class="st">&quot;Chen&quot;</span>)</a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="kw">print</span>(ranked)</a></code></pre></div>
 <pre><code>##           [,1]
 ## [1,] 0.3241398
 ## [2,] 0.1067964
@@ -294,11 +503,11 @@ comparisonMatrix =<span class="st"> </span><span class="kw">pairwiseComparisonMa
 ## [6,] 0.3241398
 ## [7,]        NA
 ## [8,]        NA</code></pre>
-<p>Another possibility is the utilization of possibility theory as described by <span class="citation">Dubois and Prade (1983)</span>. These indices work very well if there is a relatively bigger set of very good solutions. Unlike defuzzification or other methods these indices can rank them very well. However, if there is only one dominant best solution the result might not be very descriptive.</p>
+<p>Another possibility is the utilization of possibility theory as described by <span class="citation">Dubois and Prade (<a href="#ref-Dubois1983">1983</a>)</span>. These indices work very well if there is a relatively bigger set of very good solutions. Unlike defuzzification or other methods these indices can rank them very well. However, if there is only one dominant best solution the result might not be very descriptive.</p>
 <p>For large datasets the calculation might take a while. Because of that a graphical progress-bar can be printed if it is turn on by progress-bar parameter.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ranked =<span class="st"> </span><span class="kw">compareFuzzyNumbers</span>(result, <span class="st">&quot;possibilityTheory&quot;</span>)
-<span class="co"># ranked = compareFuzzyNumbers(result, &quot;possibilityTheory&quot;, progressBar = TRUE)</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(ranked)</code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">ranked =<span class="st"> </span><span class="kw">compareFuzzyNumbers</span>(result, <span class="st">&quot;possibilityTheory&quot;</span>)</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="co"># ranked = compareFuzzyNumbers(result, &quot;possibilityTheory&quot;, progressBar = TRUE)</span></a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">print</span>(ranked)</a></code></pre></div>
 <pre><code>##      possiblity necessity
 ## [1,]          0         0
 ## [2,]          0         0
@@ -312,93 +521,49 @@ comparisonMatrix =<span class="st"> </span><span class="kw">pairwiseComparisonMa
 <div id="other-methods-for-determination-of-fuzzy-weights" class="section level2">
 <h2>Other methods for determination of fuzzy weights</h2>
 <p>Since version 0.8.0 three methods for determination of fuzzy weights were added to the package. These are implemented in function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">calculateWeights_old_methods</span>(fuzzyComparisonMatrix, type)</code></pre></div>
-<p>and should only be used for comparison to the new approach proposed by <span class="citation">Krejčí, Pavlačka, and Talašová (2016)</span>. All three methods do not provide optimal outputs and significantly overestimate the amount of uncertainty of fuzzy weights in fuzzy AHP. The implemented methods are from publications <span class="citation">Chang (1996)</span>, <span class="citation">Tesfamariam and Sadiq (2006)</span> and <span class="citation">Wang, Luo, and Hua (2008)</span>.</p>
-<p>All three mentioned methods are often used to calculate so called weighting (or priority) vector of crisp weights based on comparisons of fuzzy weights (<span class="citation">Chang (1996)</span>). However, <span class="citation">Wang, Luo, and Hua (2008)</span> showed that the priority vector can assign irrational weights at specific situations and thus is not suitable for practical calculations. For the purpose of comparison the method for determination of fuzzy vector is implemented as:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">calculate_weighting_vector</span>(fuzzyWeights).</code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">calculateWeights_old_methods</span>(fuzzyComparisonMatrix, type)</a></code></pre></div>
+<p>and should only be used for comparison to the new approach proposed by <span class="citation">Krejčí, Pavlačka, and Talašová (<a href="#ref-Krejci2016">2016</a>)</span>. All three methods do not provide optimal outputs and significantly overestimate the amount of uncertainty of fuzzy weights in fuzzy AHP. The implemented methods are from publications <span class="citation">Chang (<a href="#ref-Chang1996">1996</a>)</span>, <span class="citation">Tesfamariam and Sadiq (<a href="#ref-Tesfamariam2006">2006</a>)</span> and <span class="citation">Wang, Luo, and Hua (<a href="#ref-Wang2008b">2008</a>)</span>.</p>
+<p>All three mentioned methods are often used to calculate so called weighting (or priority) vector of crisp weights based on comparisons of fuzzy weights (<span class="citation">Chang (<a href="#ref-Chang1996">1996</a>)</span>). However, <span class="citation">Wang, Luo, and Hua (<a href="#ref-Wang2008b">2008</a>)</span> showed that the priority vector can assign irrational weights at specific situations and thus is not suitable for practical calculations. For the purpose of comparison the method for determination of fuzzy vector is implemented as:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">calculate_weighting_vector</span>(fuzzyWeights).</a></code></pre></div>
 </div>
-</div>
-<div id="construction-of-pairwise-comparison-matrix-from-several-evaluations" class="section level1">
-<h1>Construction of pairwise comparison matrix from several evaluations</h1>
-<p>Firstly, we prepare three pairwise comparison matrices that represent evaluations of the same problem by three experts.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pmatrix1 =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">1</span>/<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>/<span class="dv">5</span>,<span class="dv">1</span>/<span class="dv">2</span>,<span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
-pmatrix1 =<span class="st"> </span><span class="kw">pairwiseComparisonMatrix</span>(pmatrix1)
-pmatrix2 =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">1</span>/<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">1</span>/<span class="dv">7</span>,<span class="dv">1</span>/<span class="dv">4</span>,<span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
-pmatrix2 =<span class="st"> </span><span class="kw">pairwiseComparisonMatrix</span>(pmatrix2)
-pmatrix3 =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">1</span>/<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>/<span class="dv">4</span>,<span class="dv">1</span>/<span class="dv">2</span>,<span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
-pmatrix3 =<span class="st"> </span><span class="kw">pairwiseComparisonMatrix</span>(pmatrix3)</code></pre></div>
-<p>Now we can create pairwise comparsion matrix that unifies the evaluations into single matrix using geometric (or arithmetic) mean. Here the fraction representation will not look so good anymoore so the decimal representation maybe better.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unified_matrix =<span class="st"> </span><span class="kw">buildPairwiseComparisonMatrix</span>(<span class="kw">list</span>(pmatrix1, pmatrix2, pmatrix3), <span class="dt">agg =</span> <span class="st">&quot;geometric&quot;</span>)
-<span class="kw">print</span>(unified_matrix)</code></pre></div>
-<pre><code>##                 C_1             C_2            C_3
-## C_1               1 8797722/4841573   283910/54677
-## C_2 4056460/7371077               1 2204819/874983
-## C_3    23315/121063  836731/2108430              1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(unified_matrix@values)</code></pre></div>
-<pre><code>##           [,1]      [,2]     [,3]
-## [1,] 1.0000000 1.8171206 5.192494
-## [2,] 0.5503212 1.0000000 2.519842
-## [3,] 0.1925857 0.3968503 1.000000</code></pre>
-<p>It is also possible to create fuzzy pairwise comparison matrix using mininal, geometric mean and maximal value from the list of pairwise comparison matrices.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unified_fuzzy_matrix =<span class="st"> </span><span class="kw">buildFuzzyPairwiseComparisonMatrix</span>(<span class="kw">list</span>(pmatrix1, pmatrix2, pmatrix3))
-<span class="kw">print</span>(unified_fuzzy_matrix)</code></pre></div>
-<pre><code>##                         C_1                      C_2                  C_3
-## C_1                 (1;1;1)    (1;8797722/4841573;3)   (4;283910/54677;7)
-## C_2 (1/3;4056460/7371077;1)                  (1;1;1) (2;2204819/874983;4)
-## C_3  (1/7;23315/121063;1/4) (1/4;836731/2108430;1/2)              (1;1;1)</code></pre>
-<p>If the matrices are fuzzified first, it is still possible to use them to construct fuzzy pairwise comparison matrix. The minimal, modal and maximal values are calculated as geometric means of the relevant values.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fpmatrix1 =<span class="st"> </span><span class="kw">fuzzyPairwiseComparisonMatrix</span>(pmatrix1, <span class="kw">getFuzzyScale</span>(<span class="st">&quot;full&quot;</span>))
-fpmatrix2 =<span class="st"> </span><span class="kw">fuzzyPairwiseComparisonMatrix</span>(pmatrix2, <span class="kw">getFuzzyScale</span>(<span class="st">&quot;full&quot;</span>))
-fpmatrix3 =<span class="st"> </span><span class="kw">fuzzyPairwiseComparisonMatrix</span>(pmatrix3, <span class="kw">getFuzzyScale</span>(<span class="st">&quot;full&quot;</span>))
-
-unified_fuzzy_matrix =<span class="st"> </span><span class="kw">buildFuzzyPairwiseComparisonMatrix</span>(<span class="kw">list</span>(fpmatrix1, fpmatrix2, fpmatrix3))
-<span class="kw">print</span>(unified_fuzzy_matrix)</code></pre></div>
-<pre><code>##                                          C_1                                  C_2
-## C_1                                  (1;1;1)    (1;8797722/4841573;597449/207124)
-## C_2         (50623/146022;4056460/7371077;1)                              (1;1;1)
-## C_3 (6374/39611;23315/121063;286556/1192121) (1661/5908;836731/2108430;4303/6206)
-##                                            C_3
-## C_1 (1293367/310893;283910/54677;423348/68123)
-## C_2     (13361/9264;2204819/874983;15067/4236)
-## C_3                                    (1;1;1)</code></pre>
 </div>
 <div id="authors-contribution" class="section level1">
 <h1>Author’s contribution</h1>
 <p>Jan Caha - creator, programmer</p>
-<p>Aneta Drážná - tester (up to version 0.6.5)</p>
+<p>Aneta Drážná - tester</p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
 <div id="refs" class="references">
 <div id="ref-Basile1997">
-<p>Basile, L., and L. D’Apuzzo. 1997. “Ranking and weak consistency in the A.H.P. context.” <em>Rivista Di Matematica Per Le Scienze Economiche E Sociali</em> 20 (1): 99–109.</p>
+<p>Basile, L., and L. D’Apuzzo. 1997. “Ranking and weak consistency in the A.H.P. context.” <em>Rivista Di Matematica Per Le Scienze Economiche E Sociali</em> 20 (1):99–109.</p>
 </div>
 <div id="ref-Chang1996">
-<p>Chang, Da-Yong. 1996. “Applications of the extent analysis method on fuzzy AHP.” <em>European Journal of Operational Research</em> 95 (3): 649–55. doi:<a href="https://doi.org/10.1016/0377-2217(95)00300-2">10.1016/0377-2217(95)00300-2</a>.</p>
+<p>Chang, Da-Yong. 1996. “Applications of the extent analysis method on fuzzy AHP.” <em>European Journal of Operational Research</em> 95 (3):649–55. <a href="https://doi.org/10.1016/0377-2217(95)00300-2" class="uri">https://doi.org/10.1016/0377-2217(95)00300-2</a>.</p>
 </div>
 <div id="ref-Dubois1983">
-<p>Dubois, Didier, and Henri Prade. 1983. “Ranking Fuzzy Numbers in the Setting of Possibility Theory.” <em>Information Sciences</em> 30 (3): 183–224.</p>
+<p>Dubois, Didier, and Henri Prade. 1983. “Ranking Fuzzy Numbers in the Setting of Possibility Theory.” <em>Information Sciences</em> 30 (3):183–224.</p>
 </div>
 <div id="ref-Krejci2016">
-<p>Krejčí, Jana, Ondřej Pavlačka, and Jana Talašová. 2016. “A fuzzy extension of Analytic Hierarchy Process based on the constrained fuzzy arithmetic.” <em>Fuzzy Optimization and Decision Making</em>. doi:<a href="https://doi.org/10.1007/s10700-016-9241-0">10.1007/s10700-016-9241-0</a>.</p>
+<p>Krejčí, Jana, Ondřej Pavlačka, and Jana Talašová. 2016. “A fuzzy extension of Analytic Hierarchy Process based on the constrained fuzzy arithmetic.” <em>Fuzzy Optimization and Decision Making</em>. <a href="https://doi.org/10.1007/s10700-016-9241-0" class="uri">https://doi.org/10.1007/s10700-016-9241-0</a>.</p>
 </div>
 <div id="ref-Laarhoven1983">
-<p>Laarhoven, P.J.M. van, and W. Pedrycz. 1983. “A fuzzy extension of Saaty’s priority theory.” <em>Fuzzy Sets and Systems</em> 11 (1): Pages 229–41.</p>
+<p>Laarhoven, P.J.M. van, and W. Pedrycz. 1983. “A fuzzy extension of Saaty’s priority theory.” <em>Fuzzy Sets and Systems</em> 11 (1):Pages 229–41.</p>
 </div>
 <div id="ref-Saaty1980">
 <p>Saaty, T.L. 1980. <em>The Analytical Hierarchy Process</em>. New York: McGraw Hill.</p>
 </div>
 <div id="ref-Saaty2007">
-<p>Saaty, Thomas L., and Liem T. Tran. 2007. “On the invalidity of fuzzifying numerical judgments in the Analytic Hierarchy Process.” <em>Mathematical and Computer Modelling</em> 46 (7-8): 962–75. doi:<a href="https://doi.org/10.1016/j.mcm.2007.03.022">10.1016/j.mcm.2007.03.022</a>.</p>
+<p>Saaty, Thomas L., and Liem T. Tran. 2007. “On the invalidity of fuzzifying numerical judgments in the Analytic Hierarchy Process.” <em>Mathematical and Computer Modelling</em> 46 (7-8):962–75. <a href="https://doi.org/10.1016/j.mcm.2007.03.022" class="uri">https://doi.org/10.1016/j.mcm.2007.03.022</a>.</p>
 </div>
 <div id="ref-Stoklasa2013">
-<p>Stoklasa, Jan, Věra Jandová, and Jana Talašová. 2013. “Weak consistency in Saaty’s AHP - evaluating creative work outcomes of Czech Art Colleges.” <em>Neural Network World</em> 23 (1): 61–77. doi:<a href="https://doi.org/10.14311/NNW.2013.23.005">10.14311/NNW.2013.23.005</a>.</p>
+<p>Stoklasa, Jan, Věra Jandová, and Jana Talašová. 2013. “Weak consistency in Saaty’s AHP - evaluating creative work outcomes of Czech Art Colleges.” <em>Neural Network World</em> 23 (1):61–77. <a href="https://doi.org/10.14311/NNW.2013.23.005" class="uri">https://doi.org/10.14311/NNW.2013.23.005</a>.</p>
 </div>
 <div id="ref-Tesfamariam2006">
-<p>Tesfamariam, Solomon, and Rehan Sadiq. 2006. “Risk-based environmental decision-making using fuzzy analytic hierarchy process (F-AHP).” <em>Stochastic Environmental Research and Risk Assessment</em> 21 (1): 35–50. doi:<a href="https://doi.org/10.1007/s00477-006-0042-9">10.1007/s00477-006-0042-9</a>.</p>
+<p>Tesfamariam, Solomon, and Rehan Sadiq. 2006. “Risk-based environmental decision-making using fuzzy analytic hierarchy process (F-AHP).” <em>Stochastic Environmental Research and Risk Assessment</em> 21 (1):35–50. <a href="https://doi.org/10.1007/s00477-006-0042-9" class="uri">https://doi.org/10.1007/s00477-006-0042-9</a>.</p>
 </div>
 <div id="ref-Wang2008b">
-<p>Wang, Ying Ming, Ying Luo, and Zhongsheng Hua. 2008. “On the extent analysis method for fuzzy AHP and its applications.” <em>European Journal of Operational Research</em> 186 (2): 735–47. doi:<a href="https://doi.org/10.1016/j.ejor.2007.01.050">10.1016/j.ejor.2007.01.050</a>.</p>
+<p>Wang, Ying Ming, Ying Luo, and Zhongsheng Hua. 2008. “On the extent analysis method for fuzzy AHP and its applications.” <em>European Journal of Operational Research</em> 186 (2):735–47. <a href="https://doi.org/10.1016/j.ejor.2007.01.050" class="uri">https://doi.org/10.1016/j.ejor.2007.01.050</a>.</p>
 </div>
 </div>
 </div>
@@ -410,7 +575,7 @@ unified_fuzzy_matrix =<span class="st"> </span><span class="kw">buildFuzzyPairwi
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

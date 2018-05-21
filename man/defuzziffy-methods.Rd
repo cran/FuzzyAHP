@@ -3,8 +3,8 @@
 \docType{methods}
 \name{defuzziffy}
 \alias{defuzziffy}
-\alias{defuzziffy,FuzzyData,character-method}
 \alias{defuzziffy,FuzzyData-method}
+\alias{defuzziffy,FuzzyData,character-method}
 \title{Function to defuzzify fuzzy data}
 \usage{
 defuzziffy(fuzzyData, type = "mean")
@@ -36,4 +36,3 @@ methods:
 \code{"mean"}:
 \deqn{def(\tilde{A}) = (a1 + a2 + a3)/3}{def(A) = (a1 + a2 + a3)/3}.
 }
-

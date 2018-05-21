@@ -3,20 +3,15 @@
 \docType{methods}
 \name{buildPairwiseComparisonMatrix}
 \alias{buildPairwiseComparisonMatrix}
-\alias{buildPairwiseComparisonMatrix,list,character-method}
+\alias{buildPairwiseComparisonMatrix,list-method}
 \title{Function that builds Pairwise Comparison Matrix based on list of Pairwise Comparison Matrices}
 \usage{
-buildPairwiseComparisonMatrix(listOfMatrices, agg = "geometric")
+buildPairwiseComparisonMatrix(listOfMatrices)
 
-\S4method{buildPairwiseComparisonMatrix}{list,character}(listOfMatrices,
-  agg = "geometric")
+\S4method{buildPairwiseComparisonMatrix}{list}(listOfMatrices)
 }
 \arguments{
 \item{listOfMatrices}{An object of \code{\linkS4class{list}}.}
-
-\item{agg}{A \code{\linkS4class{character}} specifying aggreation used to build
-Pairwise comparison matrix. Values \code{"geometic"} and \code{"arithmetic"} means are implemented,
-with \code{"geometic"} being default value.}
 }
 \value{
 An object of class \code{\linkS4class{PairwiseComparisonMatrix}}
@@ -26,4 +21,3 @@ This functions builds Pairwise Comparison Matrix based on list of Pairwise Compa
 the resulting Pairwise Comparison Matrix is calculated as geometric mean of all
 Pairwise Comparison Matrices in \code{listOfMatrices}.
 }
-

@@ -23,4 +23,3 @@ This methods construct object \code{\linkS4class{FuzzyData}} based on two \code{
 The functions merges the sources into single output. This method should be used in situations when both
 weights and input data are fuzzy.
 }
-

@@ -3,8 +3,8 @@
 \docType{methods}
 \name{consistencyIndex}
 \alias{consistencyIndex}
-\alias{consistencyIndex,FuzzyPairwiseComparisonMatrix-method}
 \alias{consistencyIndex,PairwiseComparisonMatrix-method}
+\alias{consistencyIndex,FuzzyPairwiseComparisonMatrix-method}
 \title{Function to determine Consistency Index}
 \usage{
 consistencyIndex(comparisonMatrix)
@@ -22,4 +22,3 @@ A numeric value of Consistency index.
 \description{
 This methods calculates Consistency index for \code{\linkS4class{PairwiseComparisonMatrix}}.
 }
-

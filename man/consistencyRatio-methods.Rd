@@ -3,8 +3,8 @@
 \docType{methods}
 \name{consistencyRatio}
 \alias{consistencyRatio}
-\alias{consistencyRatio,FuzzyPairwiseComparisonMatrix-method}
 \alias{consistencyRatio,PairwiseComparisonMatrix-method}
+\alias{consistencyRatio,FuzzyPairwiseComparisonMatrix-method}
 \title{Function to determine Consistency Ratio}
 \usage{
 consistencyRatio(comparisonMatrix, print.report = TRUE)
@@ -36,4 +36,3 @@ is smaller than 0.1. For matrices comparing more then 10 elements then Consisten
 values of random index, that is necessary to obtain Consistency Ratio, are only known for matrixes with size smaller
 than \eqn{10\times10}.
 }
-

@@ -1,11 +1,12 @@
 ---
 title: "Examples of FuzzyAHP package application (ver. `r packageDescription('FuzzyAHP')$Version`)"
-author: "Jan Caha"
+author: "Jan Caha, Aneta Drážná"
 date: '`r Sys.time()`'
 output:
   rmarkdown::html_vignette:
     toc: TRUE
 bibliography: ahp-bibliography.bib
+link-citations: yes
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Examples of FuzzyAHP package application}
@@ -230,48 +231,14 @@ and should only be used for comparison to the new approach proposed by @Krejci20
 All three mentioned methods are often used to calculate so called weighting (or priority) vector of crisp weights based on comparisons of fuzzy weights (@Chang1996). However, @Wang2008b showed that the priority vector can assign irrational weights at specific situations and thus is not suitable for practical calculations. For the purpose of comparison the method for determination of fuzzy vector is implemented as:
 ```{r, eval=FALSE}
 calculate_weighting_vector(fuzzyWeights).
-```
 
-# Construction of pairwise comparison matrix from several evaluations
-
-Firstly, we prepare three pairwise comparison matrices that represent evaluations of the same problem by three experts.
-```{r}
-pmatrix1 = matrix(c(1,3,5,1/3,1,2,1/5,1/2,1), nrow = 3, byrow = TRUE)
-pmatrix1 = pairwiseComparisonMatrix(pmatrix1)
-pmatrix2 = matrix(c(1,2,7,1/2,1,4,1/7,1/4,1), nrow = 3, byrow = TRUE)
-pmatrix2 = pairwiseComparisonMatrix(pmatrix2)
-pmatrix3 = matrix(c(1,1,4,1/1,1,2,1/4,1/2,1), nrow = 3, byrow = TRUE)
-pmatrix3 = pairwiseComparisonMatrix(pmatrix3)
-```
-
-Now we can create pairwise comparsion matrix that unifies the evaluations into single matrix using geometric (or arithmetic) mean. Here the fraction representation will not look so good anymoore so the decimal representation maybe better.
-```{r}
-unified_matrix = buildPairwiseComparisonMatrix(list(pmatrix1, pmatrix2, pmatrix3), agg = "geometric")
-print(unified_matrix)
-print(unified_matrix@values)
-```
-
-It is also possible to create fuzzy pairwise comparison matrix using mininal, geometric mean and maximal value from the list of pairwise comparison matrices.
-```{r}
-unified_fuzzy_matrix = buildFuzzyPairwiseComparisonMatrix(list(pmatrix1, pmatrix2, pmatrix3))
-print(unified_fuzzy_matrix)
-```
-
-If the matrices are fuzzified first, it is still possible to use them to construct fuzzy pairwise comparison matrix. The minimal, modal and maximal values are calculated as geometric means of the relevant values.
-```{r}
-fpmatrix1 = fuzzyPairwiseComparisonMatrix(pmatrix1, getFuzzyScale("full"))
-fpmatrix2 = fuzzyPairwiseComparisonMatrix(pmatrix2, getFuzzyScale("full"))
-fpmatrix3 = fuzzyPairwiseComparisonMatrix(pmatrix3, getFuzzyScale("full"))
-
-unified_fuzzy_matrix = buildFuzzyPairwiseComparisonMatrix(list(fpmatrix1, fpmatrix2, fpmatrix3))
-print(unified_fuzzy_matrix)
 ```
 
 # Author's contribution
 
 Jan Caha - creator, programmer
 
-Aneta Drážná - tester (up to version 0.6.5)
+Aneta Drážná - tester
 
 
 

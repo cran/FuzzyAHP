@@ -1,8 +1,8 @@
 Package: FuzzyAHP
 Type: Package
 Title: (Fuzzy) AHP Calculation
-Version: 0.9.0
-Date: 2017-03-06
+Version: 0.9.1
+Date: 2018-05-21
 Authors@R: c(person("Jan", "Caha", email = "cahik@atlas.cz",
   role = c("aut", "cre")),
   person("Aneta", "Drážná", email = "",
@@ -14,29 +14,28 @@ Description: Calculation of AHP (Analytic Hierarchy Process -
     comparison method for determination of weights.
 Encoding: UTF-8
 Depends: R (>= 3.0.0), methods, MASS
-Suggests: knitr
+Suggests: knitr, testthat
 License: LGPL (>= 3)
 LazyData: TRUE
 VignetteBuilder: knitr
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 Collate: 'class-FuzzyData.R' 'class-PairwiseComparisonMatrix.R'
         'class-FuzzyPairwiseComparisonMatrix.R' 'class-FuzzyWeights.R'
         'class-Weights.R' 'function-bindFuzzyData.R'
         'function-buildFuzzyPairwiseComparisonMatrix.R'
         'function-buildPairwiseComparisonMatrix.R'
-        'function-calculateAHP.R' 'function-calculateFuzzyAHP.R'
-        'function-calculateWeights.R' 'function-compare.R'
-        'function-consistencyIndex.R' 'function-consistencyRatio.R'
-        'function-defuzzify.R' 'function-getFuzzyNumbers.R'
-        'function-getFuzzyScale.R' 'function-insertInto.R'
-        'function-internal-optimization.R'
+        'function-calculateAHP.R' 'function-calculateWeights.R'
+        'function-compare.R' 'function-consistencyIndex.R'
+        'function-consistencyRatio.R' 'function-defuzzify.R'
+        'function-getFuzzyNumbers.R' 'function-getFuzzyScale.R'
+        'function-insertInto.R' 'function-internal-optimization.R'
         'function-internal-weights.R' 'function-print.R'
         'function-strictConsistency.R' 'function-textRepresentation.R'
         'function-weakConsistency.R' 'package-FuzzyAHP.R'
 NeedsCompilation: no
-Packaged: 2017-03-09 11:57:29 UTC; Cahik
+Packaged: 2018-05-21 10:46:20 UTC; Caha
 Author: Jan Caha [aut, cre],
   Aneta Drážná [ctb, com] (up to version 0.6.5)
 Maintainer: Jan Caha <cahik@atlas.cz>
 Repository: CRAN
-Date/Publication: 2017-03-09 14:09:50
+Date/Publication: 2018-05-21 13:26:34 UTC

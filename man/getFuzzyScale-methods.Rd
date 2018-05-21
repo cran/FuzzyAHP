@@ -42,4 +42,3 @@ Basic scale is:
 7 \tab 9 \tab 9
 }
 }
-

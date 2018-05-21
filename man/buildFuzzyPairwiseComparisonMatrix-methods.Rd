@@ -4,8 +4,7 @@
 \name{buildFuzzyPairwiseComparisonMatrix}
 \alias{buildFuzzyPairwiseComparisonMatrix}
 \alias{buildFuzzyPairwiseComparisonMatrix,list-method}
-\title{Function that builds Fuzzy Pairwise Comparison Matrix based on list of Pairwise Comparison Matrices or
-Fuzzy Pairwise Comparison Matrices}
+\title{Function that builds Fuzzy Pairwise Comparison Matrix based on list of Pairwise Comparison Matrices}
 \usage{
 buildFuzzyPairwiseComparisonMatrix(listOfMatrices)
 
@@ -19,9 +18,6 @@ An object of class \code{\linkS4class{FuzzyPairwiseComparisonMatrix}}
 }
 \description{
 This functions builds Fuzzy Pairwise Comparison Matrix based on list of Pairwise Comparison Matrices
-or Fuzzy Pairwise Comparison Matrices. the resulting Fuzzy Pairwise Comparison Matrix is calculated
-as minimum, geometric mean and maximum of each cell of all Pairwise Comparison Matrices in
-\code{listOfMatrices}. In case of Fuzzy Pairwise Comparison Matrices the resulting Fuzzy Pairwise
-Comparison Matrix is calculated as geometric mean of minimum, modal and maximum values.
+the resulting Fuzzy Pairwise Comparison Matrix is calculated as minimum, geometric mean and maximum of
+each cell of all Pairwise Comparison Matrices in \code{listOfMatrices}.
 }
-

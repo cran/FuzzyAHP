@@ -2,10 +2,10 @@
 % Please edit documentation in R/function-calculateWeights.R
 \docType{methods}
 \name{calculate_weighting_vector}
-\alias{FuzzyWeights-method}
 \alias{calculate_weighting_vector}
-\alias{calculate_weighting_vector,}
 \alias{calculate_weighting_vector,FuzzyWeights-method}
+\alias{calculate_weighting_vector,}
+\alias{FuzzyWeights-method}
 \title{Function to calculate fuzzy weighting vector}
 \usage{
 calculate_weighting_vector(fuzzyWeights)
@@ -25,4 +25,3 @@ The calculation was first described by Chang (1996).
 \references{
 CHANG, Da-Yong, 1996, Applications of the extent analysis method on fuzzy AHP. European Journal of Operational Research. 1996. Vol. 95, no. 3, p. 649–655. DOI 10.1016/0377-2217(95)00300-2.
 }
-

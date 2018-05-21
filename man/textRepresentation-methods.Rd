@@ -2,11 +2,11 @@
 % Please edit documentation in R/function-textRepresentation.R
 \docType{methods}
 \name{textRepresentation}
-\alias{PairwiseComparisonMatrix,logical-method}
 \alias{textRepresentation}
-\alias{textRepresentation,FuzzyPairwiseComparisonMatrix,logical-method}
 \alias{textRepresentation,FuzzyPairwiseComparisonMatrix-method}
+\alias{textRepresentation,FuzzyPairwiseComparisonMatrix,logical-method}
 \alias{textRepresentation,PairwiseComparisonMatrix-method}
+\alias{PairwiseComparisonMatrix,logical-method}
 \title{Function to create text representation of (Fuzzy) Pairwise comparison matrix}
 \usage{
 textRepresentation(x, whole = TRUE)
@@ -28,4 +28,3 @@ A \code{dataframe} of \code{character} type.
 \description{
 This methods creates text representation of Pairwise comparison matrices.
 }
-

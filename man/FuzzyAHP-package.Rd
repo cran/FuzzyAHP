@@ -25,10 +25,9 @@ Please see vignettes for more details about the package and examples of use.
 Complete list of classes and methods call \code{help(package="FuzzyAHP")}.
 \cr\cr
 }
-\author{
-Jan Caha \email{cahik@atlas.cz}, with contributions from Aneta Drážná
-}
 \references{
 Krejčí, Jana, Ondřej Pavlačka, and Jana Talašová. 2016. “A fuzzy extension of Analytic Hierarchy Process based on the constrained fuzzy arithmetic.” Fuzzy Optimization and Decision Making. doi:10.1007/s10700-016-9241-0.
 }
-
+\author{
+Jan Caha \email{cahik@atlas.cz}, with contributions from Aneta Drážná
+}

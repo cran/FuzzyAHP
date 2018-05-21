@@ -3,10 +3,10 @@
 \docType{methods}
 \name{fuzzyPairwiseComparisonMatrix}
 \alias{fuzzyPairwiseComparisonMatrix}
-\alias{fuzzyPairwiseComparisonMatrix,PairwiseComparisonMatrix}
-\alias{fuzzyPairwiseComparisonMatrix,PairwiseComparisonMatrix,fuzzyScale-method}
 \alias{fuzzyPairwiseComparisonMatrix,PairwiseComparisonMatrix-method}
+\alias{fuzzyPairwiseComparisonMatrix,PairwiseComparisonMatrix,fuzzyScale-method}
 \alias{fuzzyPairwiseComparisonMatrix,matrix-method}
+\alias{fuzzyPairwiseComparisonMatrix,PairwiseComparisonMatrix}
 \title{Function that creates Fuzzy Pairwise Comparions Matrix}
 \usage{
 fuzzyPairwiseComparisonMatrix(pairwiseComparisonMatrix, fuzzyScale,
@@ -51,4 +51,3 @@ From this matrix a pairwise comparison is constructed from \code{y} values and \
 function as lower and upper limits of \code{y} respectively. In this case the optional parameter
 \code{fuzzyScale} is not taken into account at all.
 }
-

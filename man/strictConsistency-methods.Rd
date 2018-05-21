@@ -32,4 +32,3 @@ listing the problematic triplets if the matrix is not consisten.
 Check if \deqn{a_{ik} = a_{ij} \times a_{jk}}{a[i,k]==a[i,j]*a[j,k]} applies
 for all \eqn{i,j,k = 1,2,\dots,n}, where \eqn{n} is size of \eqn{a}.
 }
-

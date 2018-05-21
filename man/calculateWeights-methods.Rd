@@ -3,8 +3,8 @@
 \docType{methods}
 \name{calculateWeights}
 \alias{calculateWeights}
-\alias{calculateWeights,FuzzyPairwiseComparisonMatrix-method}
 \alias{calculateWeights,PairwiseComparisonMatrix-method}
+\alias{calculateWeights,FuzzyPairwiseComparisonMatrix-method}
 \title{Function to calculate fuzzy weights based on comparison matrix}
 \usage{
 calculateWeights(comparisonMatrix)
@@ -26,4 +26,3 @@ KREJČÍ, Jana, PAVLAČKA, Ondřej and TALAŠOVÁ, Jana, 2016, A fuzzy extension
 \seealso{
 \link{PairwiseComparisonMatrix-class}
 }
-

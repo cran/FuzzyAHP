@@ -3,8 +3,8 @@
 \docType{methods}
 \name{insertInto}
 \alias{insertInto}
-\alias{insertInto,FuzzyData,FuzzyData,integer-method}
 \alias{insertInto,FuzzyData,FuzzyData-method}
+\alias{insertInto,FuzzyData,FuzzyData,integer-method}
 \title{Function that inserts FuzzyData on specific column number in another FuzzyData}
 \usage{
 insertInto(data1, data2, index)
@@ -38,4 +38,3 @@ fd = fuzzyData(v, single.value = FALSE)
 fData = insertInto(fData, fd, 2)
 
 }
-

@@ -4,7 +4,9 @@ version <- meta$Version
 
 bibentry(bibtype = "Manual",
          title = paste("Information about FuzzyAHP package for R (ver.", version,")", sep=""),
-         author = c(person("Jan", "Caha")),
+         author = c(person("Jan", "Caha"),
+                    person("Aneta", "Drážná")
+                    ),
          year = year,
          note = note,
          url = "http://github.com/JanCaha/FuzzyAHP/"

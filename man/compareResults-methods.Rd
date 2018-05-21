@@ -3,8 +3,8 @@
 \docType{methods}
 \name{compareResults}
 \alias{compareResults}
-\alias{compareResults,FuzzyData,character-method}
 \alias{compareResults,matrix-method}
+\alias{compareResults,FuzzyData,character-method}
 \title{Function to rank results}
 \usage{
 compareResults(data)
@@ -21,4 +21,3 @@ A \code{"matrix"} of numeric value that indicates ranking of each row, with the 
 This function ranks data from the highest value to the lowest. Essentially it does
 \code{(nrow(data)+1) - rank(data, na.last ="keep", ties.method= "max")}.
 }
-

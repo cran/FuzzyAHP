@@ -25,4 +25,3 @@ A \code{matrix} where rows are fuzzy numbers and columns are important values.
 This methods helps with extracting fuzzy numbers from \code{\linkS4class{FuzzyData}} and
 \code{\linkS4class{FuzzyWeights}}.
 }
-

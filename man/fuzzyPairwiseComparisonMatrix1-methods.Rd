@@ -34,4 +34,3 @@ rely more on user's specification. The middle significant values have to be defi
 to this function have to be correctly ordered and fuzzy numbers have to be reciprocal otherwise the function
 fails.
 }
-

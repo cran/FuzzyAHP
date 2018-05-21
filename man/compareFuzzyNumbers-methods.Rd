@@ -29,4 +29,3 @@ The \code{\linkS4class{FuzzyData}} can only contain one fuzzy number, otherwise 
 The calculation of type \code{"possibilityTheory"} can be time consuming as it is based on comparing each fuzzy
 number to a maximal fuzzy number obtained from the set of fuzzy numbers.
 }
-

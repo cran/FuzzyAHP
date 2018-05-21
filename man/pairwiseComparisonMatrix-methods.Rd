@@ -36,4 +36,3 @@ matrix = pairwiseComparisonMatrix(comparisonMatrix)
 \seealso{
 \linkS4class{PairwiseComparisonMatrix}
 }
-

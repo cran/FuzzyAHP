@@ -2,10 +2,10 @@
 % Please edit documentation in R/function-calculateWeights.R
 \docType{methods}
 \name{calculateWeights_old_methods}
-\alias{FuzzyPairwiseComparisonMatrix-method,}
 \alias{calculateWeights_old_methods}
-\alias{calculateWeights_old_methods,}
 \alias{calculateWeights_old_methods,FuzzyPairwiseComparisonMatrix-method}
+\alias{calculateWeights_old_methods,}
+\alias{FuzzyPairwiseComparisonMatrix-method,}
 \alias{character-method}
 \title{Function to calculate fuzzy weights based on comparison matrix using older approaches}
 \usage{
@@ -40,4 +40,3 @@ WANG, Tien-Chin and CHEN, Yueh-Hsiang, 2008, Applying fuzzy linguistic preferenc
 \seealso{
 \code{\link{calculate_weighting_vector}}
 }
-

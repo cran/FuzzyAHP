@@ -110,29 +110,5 @@ print(ranked)
 
 ## ---- eval=FALSE------------------------------------------------------------------------------------------------------
 #  calculate_weighting_vector(fuzzyWeights).
-
-## ---------------------------------------------------------------------------------------------------------------------
-pmatrix1 = matrix(c(1,3,5,1/3,1,2,1/5,1/2,1), nrow = 3, byrow = TRUE)
-pmatrix1 = pairwiseComparisonMatrix(pmatrix1)
-pmatrix2 = matrix(c(1,2,7,1/2,1,4,1/7,1/4,1), nrow = 3, byrow = TRUE)
-pmatrix2 = pairwiseComparisonMatrix(pmatrix2)
-pmatrix3 = matrix(c(1,1,4,1/1,1,2,1/4,1/2,1), nrow = 3, byrow = TRUE)
-pmatrix3 = pairwiseComparisonMatrix(pmatrix3)
-
-## ---------------------------------------------------------------------------------------------------------------------
-unified_matrix = buildPairwiseComparisonMatrix(list(pmatrix1, pmatrix2, pmatrix3), agg = "geometric")
-print(unified_matrix)
-print(unified_matrix@values)
-
-## ---------------------------------------------------------------------------------------------------------------------
-unified_fuzzy_matrix = buildFuzzyPairwiseComparisonMatrix(list(pmatrix1, pmatrix2, pmatrix3))
-print(unified_fuzzy_matrix)
-
-## ---------------------------------------------------------------------------------------------------------------------
-fpmatrix1 = fuzzyPairwiseComparisonMatrix(pmatrix1, getFuzzyScale("full"))
-fpmatrix2 = fuzzyPairwiseComparisonMatrix(pmatrix2, getFuzzyScale("full"))
-fpmatrix3 = fuzzyPairwiseComparisonMatrix(pmatrix3, getFuzzyScale("full"))
-
-unified_fuzzy_matrix = buildFuzzyPairwiseComparisonMatrix(list(fpmatrix1, fpmatrix2, fpmatrix3))
-print(unified_fuzzy_matrix)
+#  
 

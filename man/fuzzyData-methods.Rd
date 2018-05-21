@@ -28,4 +28,3 @@ represent minimal, modal and maximal value of fuzzy number.
 \seealso{
 \linkS4class{FuzzyData}
 }
-

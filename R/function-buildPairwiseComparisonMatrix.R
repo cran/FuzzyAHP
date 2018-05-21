@@ -6,9 +6,6 @@
 #' Pairwise Comparison Matrices in \code{listOfMatrices}.
 #'
 #' @param listOfMatrices An object of \code{\linkS4class{list}}.
-#' @param agg A \code{\linkS4class{character}} specifying aggreation used to build
-#' Pairwise comparison matrix. Values \code{"geometic"} and \code{"arithmetic"} means are implemented,
-#' with \code{"geometic"} being default value.
 #'
 #' @return An object of class \code{\linkS4class{PairwiseComparisonMatrix}}
 #'
@@ -16,14 +13,14 @@
 #' @rdname buildPairwiseComparisonMatrix-methods
 #' @name buildPairwiseComparisonMatrix
 setGeneric("buildPairwiseComparisonMatrix",
-           function(listOfMatrices, agg = "geometric") standardGeneric("buildPairwiseComparisonMatrix"))
+           function(listOfMatrices) standardGeneric("buildPairwiseComparisonMatrix"))
 
 #' @rdname buildPairwiseComparisonMatrix-methods
-#' @aliases buildPairwiseComparisonMatrix,list,character-method
+#' @aliases buildPairwiseComparisonMatrix,list-method
 setMethod(
   f="buildPairwiseComparisonMatrix",
-  signature(listOfMatrices = "list", agg = "character"),
-  definition=function(listOfMatrices, agg)
+  signature(listOfMatrices = "list"),
+  definition=function(listOfMatrices)
   {
 
     number = length(listOfMatrices)
@@ -43,10 +40,6 @@ setMethod(
       }
     }
 
-    if(!agg %in% c("geometric", "arithmetic")){
-      stop(paste0("Unknow aggreation type - ", agg, ". Implemented types are geometric and arithmetic."))
-    }
-
     resultMatrix = listOfMatrices[[1]]@values
 
     for (i in 1:size){
@@ -57,16 +50,7 @@ setMethod(
           vector = c(vector, listOfMatrices[[k]]@values[i, j])
         }
 
-        if(agg == "geometric"){
-          resultMatrix[i, j] = prod(vector)^(1/number)
-        }
-        else if(agg == "arithmetic"){
-          resultMatrix[i, j] = mean(vector)
-        }
-        else{
-          stop("Error in aggreation type. This should not happen.")
-        }
-
+        resultMatrix[i, j] = prod(vector)^(1/number)
       }
     }
 

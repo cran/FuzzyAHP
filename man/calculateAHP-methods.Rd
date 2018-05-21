@@ -3,12 +3,12 @@
 \docType{methods}
 \name{calculateAHP}
 \alias{calculateAHP}
-\alias{calculateAHP,FuzzyPairwiseComparisonMatrix,FuzzyData-method}
-\alias{calculateAHP,FuzzyPairwiseComparisonMatrix,matrix-method}
-\alias{calculateAHP,FuzzyWeights,FuzzyData-method}
-\alias{calculateAHP,FuzzyWeights,matrix-method}
-\alias{calculateAHP,PairwiseComparisonMatrix,matrix-method}
 \alias{calculateAHP,Weights,matrix-method}
+\alias{calculateAHP,FuzzyWeights,matrix-method}
+\alias{calculateAHP,FuzzyWeights,FuzzyData-method}
+\alias{calculateAHP,PairwiseComparisonMatrix,matrix-method}
+\alias{calculateAHP,FuzzyPairwiseComparisonMatrix,matrix-method}
+\alias{calculateAHP,FuzzyPairwiseComparisonMatrix,FuzzyData-method}
 \title{Function to calculate result of AHP}
 \usage{
 calculateAHP(weights, data)
@@ -41,4 +41,3 @@ This function calculates output of AHP based on \code{\linkS4class{Weights}}
 or \code{\linkS4class{FuzzyWeights}} on data represented either by \code{matrix} or
 \code{\linkS4class{FuzzyData}}.
 }
-
