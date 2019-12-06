@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="author" content="Jan Caha, Aneta Drážná" />
 
 
-<title>Information about FuzzyAHP package for R (ver. 0.9.1)</title>
+<title>Information about FuzzyAHP package for R (ver. 0.9.5)</title>
 
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
+<style type="text/css" data-origin="pandoc">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -34,13 +34,11 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
+  { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -82,7 +80,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -270,6 +290,9 @@ code > span.al { color: #ff0000; font-weight: bold; }
 code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
 
+
+
+
 </head>
 
 <body>
@@ -277,9 +300,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 
 
-<h1 class="title toc-ignore">Information about FuzzyAHP package for R (ver. 0.9.1)</h1>
-<h4 class="author"><em>Jan Caha, Aneta Drážná</em></h4>
-<h4 class="date"><em>2018-05-21 12:46:20</em></h4>
+<h1 class="title toc-ignore">Information about FuzzyAHP package for R (ver. 0.9.5)</h1>
+<h4 class="author">Jan Caha, Aneta Drážná</h4>
+<h4 class="date">2019-12-06 17:19:21</h4>
 
 
 <div id="TOC">
@@ -294,35 +317,34 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <div id="basic-info" class="section level2">
 <h2>Basic Info</h2>
-<p><strong>FuzzyAHP</strong> is an <strong>R</strong> package for calculation of both classic and fuzzy AHP. The package is only suitable for AHP that uses categorical rating of criteria for alternatives instead of pairwise comparison of alternatives according to each criteria. This adaptation of AHP is common in situations when the number of alternatives is hight and the pairwise comparison is thus inadequate or impossible to construct. The weights for criteria are, however, still determined from the pairwise comparison matrix. This approach towards AHP is common in Geosciences as well as other fields (please see References for examples). A practical example of using <strong>FuzzyAHP</strong> in geosciences can be found in <span class="citation">Caha and Burian (<a href="#ref-Caha2017">2017</a>)</span>.</p>
-<p>The determination of criteria weights is done according to process described by <span class="citation">Krejčí, Pavlačka, and Talašová (<a href="#ref-Krejci2016">2016</a>)</span>, which yelds significantly narrower fuzzy numbers than previously used approaches.</p>
+<p><strong>FuzzyAHP</strong> is an <strong>R</strong> package for calculation of both classic and fuzzy AHP. The package is only suitable for AHP that uses categorical rating of criteria for alternatives instead of pairwise comparison of alternatives according to each criteria. This adaptation of AHP is common in situations when the number of alternatives is hight and the pairwise comparison is thus inadequate or impossible to construct. The weights for criteria are, however, still determined from the pairwise comparison matrix. This approach towards AHP is common in Geosciences as well as other fields (please see References for examples). A practical example of using <strong>FuzzyAHP</strong> in geosciences can be found in <span class="citation">Caha and Burian (<a href="#ref-Caha2017" role="doc-biblioref">2017</a>)</span>.</p>
+<p>The determination of criteria weights is done according to process described by <span class="citation">Krejčí, Pavlačka, and Talašová (<a href="#ref-Krejci2016" role="doc-biblioref">2016</a>)</span>, which yelds significantly narrower fuzzy numbers than previously used approaches.</p>
 </div>
 <div id="citation" class="section level2">
 <h2>Citation</h2>
 <p>To cite this package use:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">citation</span>(<span class="st">&quot;FuzzyAHP&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">citation</span>(<span class="st">&quot;FuzzyAHP&quot;</span>)</a></code></pre></div>
 <pre><code>## 
-## Caha J, Drážná A (2018). _Information about FuzzyAHP package for R
-## (ver.0.9.1)_. R package version 0.9.1, &lt;URL:
-## http://github.com/JanCaha/FuzzyAHP/&gt;.
+## Caha J, Drážná A (2019). _Information about FuzzyAHP package for R (ver.0.9.5)_. R package version 0.9.5,
+## &lt;URL: http://github.com/JanCaha/FuzzyAHP/&gt;.
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
 ##   @Manual{,
-##     title = {Information about FuzzyAHP package for R (ver.0.9.1)},
+##     title = {Information about FuzzyAHP package for R (ver.0.9.5)},
 ##     author = {Jan Caha and Aneta Drážná},
-##     year = {2018},
-##     note = {R package version 0.9.1},
+##     year = {2019},
+##     note = {R package version 0.9.5},
 ##     url = {http://github.com/JanCaha/FuzzyAHP/},
 ##   }</code></pre>
-<p>If you use this package in publication, please consider citing our article: <span class="citation">Caha and Burian (<a href="#ref-Caha2017">2017</a>)</span></p>
+<p>If you use this package in publication, please consider citing our article: <span class="citation">Caha and Burian (<a href="#ref-Caha2017" role="doc-biblioref">2017</a>)</span></p>
 <pre><code>@InCollection{Caha2017,
   author        = {Caha, Jan and Burian, Jaroslav},
   title         = {{Comparison of Fuzzy AHP Algorithms for Land Suitability Assessment}},
   booktitle     = {Dynamics in GIscience. GIS OSTRAVA 2017. Lecture Notes in Geoinformation and Cartography},
   publisher     = {Springer},
   year          = {2017},
-  editor        = {Ivan, Igor and Hor{\'{a}}k, Ji\v{r}{\'{i}} and Inspektor, Tom{\'{a}}{\v{s}}},
+  editor        = {Ivan, Igor and Hor{\&#39;{a}}k, Ji\v{r}{\&#39;{i}} and Inspektor, Tom{\&#39;{a}}{\v{s}}},
   pages         = {31--46},
   address       = {Cham},
   doi           = {10.1007/978-3-319-61297-3_3},
@@ -340,47 +362,50 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>References</h2>
 <div id="refs" class="references">
 <div id="ref-Bathrellos2012">
-<p>Bathrellos, George D., Kalliopi Gaki-Papanastassiou, Hariklia D. Skilodimou, Dimitrios Papanastassiou, and Konstantinos G. Chousianitis. 2012. “Potential suitability for urban planning and industry development using natural hazard maps and geological-geomorphological parameters.” <em>Environmental Earth Sciences</em> 66 (2):537–48. <a href="https://doi.org/10.1007/s12665-011-1263-x" class="uri">https://doi.org/10.1007/s12665-011-1263-x</a>.</p>
+<p>Bathrellos, George D., Kalliopi Gaki-Papanastassiou, Hariklia D. Skilodimou, Dimitrios Papanastassiou, and Konstantinos G. Chousianitis. 2012. “Potential suitability for urban planning and industry development using natural hazard maps and geological-geomorphological parameters.” <em>Environmental Earth Sciences</em> 66 (2): 537–48. <a href="https://doi.org/10.1007/s12665-011-1263-x">https://doi.org/10.1007/s12665-011-1263-x</a>.</p>
 </div>
 <div id="ref-Boroushaki2008">
-<p>Boroushaki, Soheil, and Jacek Malczewski. 2008. “Implementing an extension of the analytical hierarchy process using ordered weighted averaging operators with fuzzy quantifiers in ArcGIS.” <em>Computers and Geosciences</em> 34 (4):399–410. <a href="https://doi.org/10.1016/j.cageo.2007.04.003" class="uri">https://doi.org/10.1016/j.cageo.2007.04.003</a>.</p>
+<p>Boroushaki, Soheil, and Jacek Malczewski. 2008. “Implementing an extension of the analytical hierarchy process using ordered weighted averaging operators with fuzzy quantifiers in ArcGIS.” <em>Computers and Geosciences</em> 34 (4): 399–410. <a href="https://doi.org/10.1016/j.cageo.2007.04.003">https://doi.org/10.1016/j.cageo.2007.04.003</a>.</p>
 </div>
 <div id="ref-Caha2017">
-<p>Caha, Jan, and Jaroslav Burian. 2017. “Comparison of Fuzzy AHP Algorithms for Land Suitability Assessment.” In <em>Dynamics in Giscience. GIS Ostrava 2017. Lecture Notes in Geoinformation and Cartography</em>, edited by Igor Ivan, Jiří Horák, and Tomáš Inspektor, 31–46. Cham: Springer. <a href="https://doi.org/10.1007/978-3-319-61297-3_3" class="uri">https://doi.org/10.1007/978-3-319-61297-3_3</a>.</p>
+<p>Caha, Jan, and Jaroslav Burian. 2017. “Comparison of Fuzzy AHP Algorithms for Land Suitability Assessment.” In <em>Dynamics in Giscience. GIS Ostrava 2017. Lecture Notes in Geoinformation and Cartography</em>, edited by Igor Ivan, Jiří Horák, and Tomáš Inspektor, 31–46. Cham: Springer. <a href="https://doi.org/10.1007/978-3-319-61297-3_3">https://doi.org/10.1007/978-3-319-61297-3_3</a>.</p>
 </div>
 <div id="ref-Chang1996">
-<p>Chang, Da-Yong. 1996. “Applications of the extent analysis method on fuzzy AHP.” <em>European Journal of Operational Research</em> 95 (3):649–55. <a href="https://doi.org/10.1016/0377-2217(95)00300-2" class="uri">https://doi.org/10.1016/0377-2217(95)00300-2</a>.</p>
+<p>Chang, Da-Yong. 1996. “Applications of the extent analysis method on fuzzy AHP.” <em>European Journal of Operational Research</em> 95 (3): 649–55. <a href="https://doi.org/10.1016/0377-2217(95)00300-2">https://doi.org/10.1016/0377-2217(95)00300-2</a>.</p>
 </div>
 <div id="ref-Chen2010">
-<p>Chen, Y, J Yu, and S Khan. 2010. “Spatial sensitivity analysis of multi-criteria weights in GIS-based land suitability evaluation.” <em>Environmental Modelling &amp; Software</em> 25 (12):1582–91. <a href="https://doi.org/10.1016/j.envsoft.2010.06.001" class="uri">https://doi.org/10.1016/j.envsoft.2010.06.001</a>.</p>
+<p>Chen, Y, J Yu, and S Khan. 2010. “Spatial sensitivity analysis of multi-criteria weights in GIS-based land suitability evaluation.” <em>Environmental Modelling &amp; Software</em> 25 (12): 1582–91. <a href="https://doi.org/10.1016/j.envsoft.2010.06.001">https://doi.org/10.1016/j.envsoft.2010.06.001</a>.</p>
 </div>
 <div id="ref-Dai2001">
-<p>Dai, F.C, C.F Lee, and X.H Zhang. 2001. “GIS-based geo-environmental evaluation for urban land-use planning: a case study.” <em>Engineering Geology</em> 61 (2001):257–71. <a href="https://doi.org/10.1016/S0013-7952(01)00028-X" class="uri">https://doi.org/10.1016/S0013-7952(01)00028-X</a>.</p>
+<p>Dai, F. C, C. F Lee, and X. H Zhang. 2001. “GIS-based geo-environmental evaluation for urban land-use planning: a case study.” <em>Engineering Geology</em> 61 (2001): 257–71. <a href="https://doi.org/10.1016/S0013-7952(01)00028-X">https://doi.org/10.1016/S0013-7952(01)00028-X</a>.</p>
 </div>
 <div id="ref-Feizizadeh2013">
-<p>Feizizadeh, Bakhtiar, and Thomas Blaschke. 2013. “GIS-multicriteria decision analysis for landslide susceptibility mapping: Comparing three methods for the Urmia lake basin, Iran.” <em>Natural Hazards</em> 65 (3):2105–28. <a href="https://doi.org/10.1007/s11069-012-0463-3" class="uri">https://doi.org/10.1007/s11069-012-0463-3</a>.</p>
+<p>Feizizadeh, Bakhtiar, and Thomas Blaschke. 2013. “GIS-multicriteria decision analysis for landslide susceptibility mapping: Comparing three methods for the Urmia lake basin, Iran.” <em>Natural Hazards</em> 65 (3): 2105–28. <a href="https://doi.org/10.1007/s11069-012-0463-3">https://doi.org/10.1007/s11069-012-0463-3</a>.</p>
 </div>
 <div id="ref-Gorsevski2012">
-<p>Gorsevski, Pece V., Katerina R. Donevska, Cvetko D. Mitrovski, and Joseph P. Frizado. 2012. “Integrating multi-criteria evaluation techniques with geographic information systems for landfill site selection: A case study using ordered weighted average.” <em>Waste Management</em> 32 (2):287–96. <a href="https://doi.org/10.1016/j.wasman.2011.09.023" class="uri">https://doi.org/10.1016/j.wasman.2011.09.023</a>.</p>
+<p>Gorsevski, Pece V., Katerina R. Donevska, Cvetko D. Mitrovski, and Joseph P. Frizado. 2012. “Integrating multi-criteria evaluation techniques with geographic information systems for landfill site selection: A case study using ordered weighted average.” <em>Waste Management</em> 32 (2): 287–96. <a href="https://doi.org/10.1016/j.wasman.2011.09.023">https://doi.org/10.1016/j.wasman.2011.09.023</a>.</p>
 </div>
 <div id="ref-Krejci2016">
-<p>Krejčí, Jana, Ondřej Pavlačka, and Jana Talašová. 2016. “A fuzzy extension of Analytic Hierarchy Process based on the constrained fuzzy arithmetic.” <em>Fuzzy Optimization and Decision Making</em>. <a href="https://doi.org/10.1007/s10700-016-9241-0" class="uri">https://doi.org/10.1007/s10700-016-9241-0</a>.</p>
+<p>Krejčí, Jana, Ondřej Pavlačka, and Jana Talašová. 2016. “A fuzzy extension of Analytic Hierarchy Process based on the constrained fuzzy arithmetic.” <em>Fuzzy Optimization and Decision Making</em>. <a href="https://doi.org/10.1007/s10700-016-9241-0">https://doi.org/10.1007/s10700-016-9241-0</a>.</p>
 </div>
 <div id="ref-Sinha2014">
-<p>Sinha, Nishant, Neena Priyanka, and P. K. Joshi. 2014. “Using Spatial Multi-Criteria Analysis and Ranking Tool (SMART) in earthquake risk assessment: a case study of Delhi region, India.” <em>Geomatics, Natural Hazards and Risk</em> 5705 (March):1–22. <a href="https://doi.org/10.1080/19475705.2014.945100" class="uri">https://doi.org/10.1080/19475705.2014.945100</a>.</p>
+<p>Sinha, Nishant, Neena Priyanka, and P. K. Joshi. 2014. “Using Spatial Multi-Criteria Analysis and Ranking Tool (SMART) in earthquake risk assessment: a case study of Delhi region, India.” <em>Geomatics, Natural Hazards and Risk</em> 5705 (March): 1–22. <a href="https://doi.org/10.1080/19475705.2014.945100">https://doi.org/10.1080/19475705.2014.945100</a>.</p>
 </div>
 <div id="ref-Wang2009">
-<p>Wang, Guiqin, Li Qin, Guoxue Li, and Lijun Chen. 2009. “Landfill site selection using spatial information technologies and AHP: A case study in Beijing, China.” <em>Journal of Environmental Management</em> 90 (8):2414–21. <a href="https://doi.org/10.1016/j.jenvman.2008.12.008" class="uri">https://doi.org/10.1016/j.jenvman.2008.12.008</a>.</p>
+<p>Wang, Guiqin, Li Qin, Guoxue Li, and Lijun Chen. 2009. “Landfill site selection using spatial information technologies and AHP: A case study in Beijing, China.” <em>Journal of Environmental Management</em> 90 (8): 2414–21. <a href="https://doi.org/10.1016/j.jenvman.2008.12.008">https://doi.org/10.1016/j.jenvman.2008.12.008</a>.</p>
 </div>
 <div id="ref-Wang2008a">
-<p>Wang, X. D., X. H. Zhong, S. Z. Liu, J. G. Liu, Z. Y. Wang, and M. H. Li. 2008. “Regional assessment of environmental vulnerability in the Tibetan Plateau: Development and application of a new method.” <em>Journal of Arid Environments</em> 72 (10):1929–39. <a href="https://doi.org/10.1016/j.jaridenv.2008.06.005" class="uri">https://doi.org/10.1016/j.jaridenv.2008.06.005</a>.</p>
+<p>Wang, X. D., X. H. Zhong, S. Z. Liu, J. G. Liu, Z. Y. Wang, and M. H. Li. 2008. “Regional assessment of environmental vulnerability in the Tibetan Plateau: Development and application of a new method.” <em>Journal of Arid Environments</em> 72 (10): 1929–39. <a href="https://doi.org/10.1016/j.jaridenv.2008.06.005">https://doi.org/10.1016/j.jaridenv.2008.06.005</a>.</p>
 </div>
 <div id="ref-Wang2008b">
-<p>Wang, Ying Ming, Ying Luo, and Zhongsheng Hua. 2008. “On the extent analysis method for fuzzy AHP and its applications.” <em>European Journal of Operational Research</em> 186 (2):735–47. <a href="https://doi.org/10.1016/j.ejor.2007.01.050" class="uri">https://doi.org/10.1016/j.ejor.2007.01.050</a>.</p>
+<p>Wang, Ying Ming, Ying Luo, and Zhongsheng Hua. 2008. “On the extent analysis method for fuzzy AHP and its applications.” <em>European Journal of Operational Research</em> 186 (2): 735–47. <a href="https://doi.org/10.1016/j.ejor.2007.01.050">https://doi.org/10.1016/j.ejor.2007.01.050</a>.</p>
 </div>
 </div>
 </div>
 
+
+
+<!-- code folding -->
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

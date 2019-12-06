@@ -1,12 +1,10 @@
 Package: FuzzyAHP
 Type: Package
 Title: (Fuzzy) AHP Calculation
-Version: 0.9.1
-Date: 2018-05-21
+Version: 0.9.5
+Date: 2019-12-06
 Authors@R: c(person("Jan", "Caha", email = "cahik@atlas.cz",
-  role = c("aut", "cre")),
-  person("Aneta", "Drážná", email = "",
-  role = c("ctb", "com"), comment = "up to version 0.6.5"))
+  role = c("aut", "cre")))
 URL: http://github.com/JanCaha/FuzzyAHP/
 Description: Calculation of AHP (Analytic Hierarchy Process -
     <http://en.wikipedia.org/wiki/Analytic_hierarchy_process>)
@@ -18,7 +16,7 @@ Suggests: knitr, testthat
 License: LGPL (>= 3)
 LazyData: TRUE
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 7.0.1
 Collate: 'class-FuzzyData.R' 'class-PairwiseComparisonMatrix.R'
         'class-FuzzyPairwiseComparisonMatrix.R' 'class-FuzzyWeights.R'
         'class-Weights.R' 'function-bindFuzzyData.R'
@@ -33,9 +31,8 @@ Collate: 'class-FuzzyData.R' 'class-PairwiseComparisonMatrix.R'
         'function-strictConsistency.R' 'function-textRepresentation.R'
         'function-weakConsistency.R' 'package-FuzzyAHP.R'
 NeedsCompilation: no
-Packaged: 2018-05-21 10:46:20 UTC; Caha
-Author: Jan Caha [aut, cre],
-  Aneta Drážná [ctb, com] (up to version 0.6.5)
+Packaged: 2019-12-06 16:19:23 UTC; Cahik
+Author: Jan Caha [aut, cre]
 Maintainer: Jan Caha <cahik@atlas.cz>
 Repository: CRAN
-Date/Publication: 2018-05-21 13:26:34 UTC
+Date/Publication: 2019-12-06 16:40:02 UTC
